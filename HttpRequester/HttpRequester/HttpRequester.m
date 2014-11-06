@@ -10,30 +10,18 @@
 
 @implementation HttpRequester
 
--(void)httpPost:(NSString*)URLString headers:(NSDictionary*)headers data:(NSData*)data target:(id<HttpRequesterDelegate>)target{
-    NSMutableURLRequest *request = [self buildRequestWithURL:URLString headers:headers data:data andType:@"POST"];
-    [self sendRequest:request target:target andType:@"POST"];
-}
-
--(void)httpGet:(NSString*)URLString
-          headers:(NSDictionary*)headers
-       target:(id<HttpRequesterDelegate>)target{
-    NSMutableURLRequest *request = [self buildRequestWithURL:URLString headers:headers data:nil andType:@"GET"];
-    [self sendRequest:request target:target andType:@"GET"];
-}
-
-
--(void)httpPut:(NSString *)URLString headers:(NSDictionary *)headers data:(NSData *)data target:(id<HttpRequesterDelegate>)target{
-    NSMutableURLRequest *request = [self buildRequestWithURL:URLString headers:headers data:data andType:@"PUT"];
-    [self sendRequest:request target:target andType:@"PUT"];
-}
-
--(void)httpDelete:(NSString *)URLString headers:(NSDictionary *)headers target:(id<HttpRequesterDelegate>)target{
-    NSMutableURLRequest *request = [self buildRequestWithURL:URLString headers:headers data:nil andType:@"DELETE"];
-    [self sendRequest:request target:target andType:@"DELETE"];
-}
-
--(void)sendRequest:(NSMutableURLRequest*)request target:(id<HttpRequesterDelegate>)target andType:(NSString*)requestType{
+- (void)httpPostWithURL:(NSString *)urlString content:(NSString *)contentString delegate:(id<HttpRequesterDelegate>)receiver {
+    
+    NSData *postData = [contentString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)postData.length];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Current-Type"];
+    [request setHTTPBody:postData];
+    [request setCachePolicy:NSURLRequestReloadIgnoringCacheData]; // http://stackoverflow.com/a/405896
+    [request setTimeoutInterval:60.0];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:request
@@ -41,35 +29,33 @@
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                
                                if (error) {
-                                   [target failedWithError:error];
+                                   [receiver failedWithError:error];
                                } else {
-                                   [target receivedData:data];
+                                   [receiver receivedData:data];
                                }
                            }];
+    
 }
 
-
--(NSMutableURLRequest*)buildRequestWithURL:(NSString *)URLString
-                                   headers:(NSDictionary *)headers
-                                      data:(NSData *)data
-                                   andType:(NSString*)requestType{
+- (void) httpGetWithURL:(NSString *)urlString delegate:(id<HttpRequesterDelegate>)receiver {
     
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"GET"];
+    [request setCachePolicy:NSURLRequestReloadIgnoringCacheData]; // http://stackoverflow.com/a/405896
+    [request setTimeoutInterval:60.0];
     
-    [request setHTTPMethod:requestType];
-    for (NSString* key in headers) {
-        NSString* value = [headers objectForKey:key];
-        [request setValue:value forHTTPHeaderField:key];
-    }
-    
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    
-    if (data != nil) {
-        [request setHTTPBody:data];
-    }
-    
-    return request;
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               if (error) {
+                                   [receiver failedWithError:error];
+                               } else {
+                                   [receiver receivedData:data];
+                               }
+                           }];
 }
 
 @end

@@ -13,13 +13,16 @@
 - (void)receivedData:(NSData *)data;
 - (void)failedWithError:(NSError *)error;
 
+@optional
+
+// http://stackoverflow.com/a/405896
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse;
+
 @end
 
 @interface HttpRequester : NSObject
 
--(void)httpPost:(NSString*)URLString headers:(NSDictionary*)headers data:(NSData*)data target:(id<HttpRequesterDelegate>)target;
--(void)httpGet:(NSString*)URLString headers:(NSDictionary*)headers target:(id<HttpRequesterDelegate>)target;
--(void)httpPut:(NSString *)URLString headers:(NSDictionary *)headers data:(NSData *)data target:(id<HttpRequesterDelegate>)target;
--(void)httpDelete:(NSString *)URLString headers:(NSDictionary *)headers target:(id<HttpRequesterDelegate>)target;
+- (void)httpPostWithURL:(NSString *)urlString content:(NSString *)contentString delegate:(id<HttpRequesterDelegate>)receiver;
+- (void) httpGetWithURL:(NSString *)urlString delegate:(id<HttpRequesterDelegate>)receiver;
 
 @end

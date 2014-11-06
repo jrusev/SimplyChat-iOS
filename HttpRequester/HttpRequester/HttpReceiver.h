@@ -13,7 +13,4 @@
 
 @property (nonatomic, strong) NSData *data;
 
-// http://stackoverflow.com/a/405896
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse;
-
 @end
