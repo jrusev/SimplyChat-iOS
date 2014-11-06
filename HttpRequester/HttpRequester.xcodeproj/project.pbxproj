@@ -1,0 +1,252 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84496C3C1A09663F00418E8F /* HttpReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 84496C3B1A09663F00418E8F /* HttpReceiver.m */; };
+		84A76B831A09597B0067021C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A76B821A09597B0067021C /* main.m */; };
+		84A76B8C1A0959AA0067021C /* HttpRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A76B8B1A0959AA0067021C /* HttpRequester.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		84A76B7D1A09597B0067021C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		84496C3A1A09663F00418E8F /* HttpReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpReceiver.h; sourceTree = "<group>"; };
+		84496C3B1A09663F00418E8F /* HttpReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpReceiver.m; sourceTree = "<group>"; };
+		84A76B7F1A09597B0067021C /* HttpRequester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HttpRequester; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A76B821A09597B0067021C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		84A76B8A1A0959AA0067021C /* HttpRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequester.h; sourceTree = "<group>"; };
+		84A76B8B1A0959AA0067021C /* HttpRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequester.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84A76B7C1A09597B0067021C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		84A76B761A09597A0067021C = {
+			isa = PBXGroup;
+			children = (
+				84A76B811A09597B0067021C /* HttpRequester */,
+				84A76B801A09597B0067021C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		84A76B801A09597B0067021C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84A76B7F1A09597B0067021C /* HttpRequester */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84A76B811A09597B0067021C /* HttpRequester */ = {
+			isa = PBXGroup;
+			children = (
+				84A76B8A1A0959AA0067021C /* HttpRequester.h */,
+				84A76B8B1A0959AA0067021C /* HttpRequester.m */,
+				84496C3A1A09663F00418E8F /* HttpReceiver.h */,
+				84496C3B1A09663F00418E8F /* HttpReceiver.m */,
+				84A76B821A09597B0067021C /* main.m */,
+			);
+			path = HttpRequester;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84A76B7E1A09597B0067021C /* HttpRequester */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84A76B861A09597B0067021C /* Build configuration list for PBXNativeTarget "HttpRequester" */;
+			buildPhases = (
+				84A76B7B1A09597B0067021C /* Sources */,
+				84A76B7C1A09597B0067021C /* Frameworks */,
+				84A76B7D1A09597B0067021C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HttpRequester;
+			productName = HttpRequester;
+			productReference = 84A76B7F1A09597B0067021C /* HttpRequester */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84A76B771A09597A0067021C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = JR;
+				TargetAttributes = {
+					84A76B7E1A09597B0067021C = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 84A76B7A1A09597A0067021C /* Build configuration list for PBXProject "HttpRequester" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 84A76B761A09597A0067021C;
+			productRefGroup = 84A76B801A09597B0067021C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84A76B7E1A09597B0067021C /* HttpRequester */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84A76B7B1A09597B0067021C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84A76B8C1A0959AA0067021C /* HttpRequester.m in Sources */,
+				84A76B831A09597B0067021C /* main.m in Sources */,
+				84496C3C1A09663F00418E8F /* HttpReceiver.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		84A76B841A09597B0067021C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		84A76B851A09597B0067021C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		84A76B871A09597B0067021C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		84A76B881A09597B0067021C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84A76B7A1A09597A0067021C /* Build configuration list for PBXProject "HttpRequester" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84A76B841A09597B0067021C /* Debug */,
+				84A76B851A09597B0067021C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84A76B861A09597B0067021C /* Build configuration list for PBXNativeTarget "HttpRequester" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84A76B871A09597B0067021C /* Debug */,
+				84A76B881A09597B0067021C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 84A76B771A09597A0067021C /* Project object */;
+}
