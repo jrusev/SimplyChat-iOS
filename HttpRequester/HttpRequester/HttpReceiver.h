@@ -11,6 +11,8 @@
 
 @interface HttpReceiver : NSObject<HttpRequesterDelegate>
 
+- (void)connect;
+
 @property (nonatomic, strong) NSData *data;
 
 @end

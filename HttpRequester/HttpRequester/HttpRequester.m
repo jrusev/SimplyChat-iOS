@@ -10,12 +10,12 @@
 
 @implementation HttpRequester
 
-- (void)httpPostWithURL:(NSString *)urlString content:(NSString *)contentString delegate:(id<HttpRequesterDelegate>)receiver {
+- (void)httpPostWithURL:(NSString *)url content:(NSString *)content delegate:(id<HttpRequesterDelegate>)receiver {
     
-    NSData *postData = [contentString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSData *postData = [content dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)postData.length];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:urlString]];
+    [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Current-Type"];
@@ -37,10 +37,10 @@
     
 }
 
-- (void) httpGetWithURL:(NSString *)urlString delegate:(id<HttpRequesterDelegate>)receiver {
+- (void) httpGetWithURL:(NSString *)url delegate:(id<HttpRequesterDelegate>)receiver {
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:urlString]];
+    [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
     [request setCachePolicy:NSURLRequestReloadIgnoringCacheData]; // http://stackoverflow.com/a/405896
     [request setTimeoutInterval:60.0];

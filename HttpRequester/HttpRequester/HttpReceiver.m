@@ -10,6 +10,21 @@
 
 @implementation HttpReceiver
 
+- (void)connect {
+    HttpRequester *requester = [[HttpRequester alloc] init];
+    
+    NSString *postUrl = @"http://localhost:1337/auth/token";
+    NSString *postContent = [NSString stringWithFormat:@"&grant_type=%@&client_id=%@&client_secret=%@&username=%@&password=%@",@"password",@"mobileV1",@"abc123456",@"admin", @"admin"];
+    NSString *getUrl = @"http://localhost:1337/api/users";
+    
+    [requester httpGetWithURL:getUrl delegate:self];
+    [requester httpPostWithURL:postUrl content:postContent delegate:self];
+    
+    // Create a loop until we get the data back
+    NSDate *futureTime = [NSDate dateWithTimeIntervalSinceNow:1.0];
+    [[NSRunLoop currentRunLoop] runUntilDate:futureTime];
+}
+
 #pragma mark - HttpReceiverDelegate
 
 - (NSDictionary *)getJson:(NSData *)data {

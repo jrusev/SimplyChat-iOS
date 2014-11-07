@@ -22,7 +22,7 @@
 
 @interface HttpRequester : NSObject
 
-- (void)httpPostWithURL:(NSString *)urlString content:(NSString *)contentString delegate:(id<HttpRequesterDelegate>)receiver;
-- (void) httpGetWithURL:(NSString *)urlString delegate:(id<HttpRequesterDelegate>)receiver;
+- (void)httpPostWithURL:(NSString *)url content:(NSString *)content delegate:(id<HttpRequesterDelegate>)receiver;
+- (void)httpGetWithURL:(NSString *)url delegate:(id<HttpRequesterDelegate>)receiver;
 
 @end
