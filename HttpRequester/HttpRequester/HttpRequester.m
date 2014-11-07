@@ -37,13 +37,18 @@
     
 }
 
-- (void) httpGetWithURL:(NSString *)url delegate:(id<HttpRequesterDelegate>)receiver {
+- (void) httpGetWithURL:(NSString *)url headers:(NSDictionary *)headers delegate:(id<HttpRequesterDelegate>)receiver {
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
     [request setCachePolicy:NSURLRequestReloadIgnoringCacheData]; // http://stackoverflow.com/a/405896
     [request setTimeoutInterval:60.0];
+    
+    for (NSString* key in headers) {
+        NSString* value = [headers objectForKey:key];
+        [request setValue:value forHTTPHeaderField:key];
+    }
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:request

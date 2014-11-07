@@ -13,6 +13,7 @@
 
 - (void)connect;
 
-@property (nonatomic, strong) NSData *data;
+@property (nonatomic, strong) NSString *accessToken;
+@property (nonatomic, strong) NSArray *users;
 
 @end

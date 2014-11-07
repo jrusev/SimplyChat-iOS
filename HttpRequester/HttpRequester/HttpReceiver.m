@@ -15,17 +15,17 @@
     
     NSString *postUrl = @"http://localhost:1337/auth/token";
     NSString *postContent = [NSString stringWithFormat:@"&grant_type=%@&client_id=%@&client_secret=%@&username=%@&password=%@",@"password",@"mobileV1",@"abc123456",@"admin", @"admin"];
-    NSString *getUrl = @"http://localhost:1337/api/users";
+    NSString *getUrl = @"http://localhost:1337/api/users/profile";
     
-    [requester httpGetWithURL:getUrl delegate:self];
-    [requester httpPostWithURL:postUrl content:postContent delegate:self];
+    NSString *token = @"cbMlxxmFBbZ2p3YOuSfEfOeMYFppdEpQOUrDGJXW+jo=";
+    NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", token] };
+    [requester httpGetWithURL:getUrl headers:headers delegate:self];
+    //[requester httpPostWithURL:postUrl content:postContent delegate:self];
     
     // Create a loop until we get the data back
     NSDate *futureTime = [NSDate dateWithTimeIntervalSinceNow:1.0];
     [[NSRunLoop currentRunLoop] runUntilDate:futureTime];
 }
-
-#pragma mark - HttpReceiverDelegate
 
 - (NSDictionary *)getJson:(NSData *)data {
     NSError *error = nil;
@@ -35,13 +35,15 @@
         NSLog(@"There was a problem deserializing from JSON");
         return nil;
     }
-
+    
     NSDictionary *results = object;
     return results;
 }
 
+#pragma mark - HttpReceiverDelegate
+
 -(void)receivedData:(NSData *)data {
-    self.data = data;
+
 //    NSString* response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 //    NSLog(@"Response received: %@", response);
     
