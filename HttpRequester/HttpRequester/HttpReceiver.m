@@ -20,13 +20,11 @@
 @implementation HttpReceiver
 
 - (HttpRequester *)requester {
-    if (!_requester) {
-        _requester = [[HttpRequester alloc] init];
-    }
+    if (!_requester) _requester = [[HttpRequester alloc] init];
     return _requester;
 }
 
-- (void)connect {
+- (void)login {
     
     NSString *postContent = [NSString stringWithFormat:@"&grant_type=%@&client_id=%@&client_secret=%@&username=%@&password=%@",@"password",@"mobileV1",@"abc123456",@"admin", @"admin"];
     
@@ -45,29 +43,18 @@
 
 #pragma mark - private methods
 
-- (NSDictionary *)getJson:(NSData *)data {
-    NSError *error = nil;
-    id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    
-    if(error || ![object isKindOfClass:[NSDictionary class]]) {
-        NSLog(@"There was a problem deserializing from JSON");
-        return nil;
-    }
-    
-    NSDictionary *results = object;
-    return results;
-}
-
 -(void)receivedToken:(NSData *)data {
     
     NSDictionary *jsonObj = [self getJson:data];
-    NSString *token = jsonObj[@"access_token"];
-    NSLog(@"access_token: %@", token);
-   
-   
-    //NSString *token = @"cbMlxxmFBbZ2p3YOuSfEfOeMYFppdEpQOUrDGJXW+jo=";
-    NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", token] };
-    
+    self.accessToken = jsonObj[@"access_token"];
+
+    NSLog(@"access_token: %@", self.accessToken);
+
+    [self getUserProfile];
+}
+
+- (void)getUserProfile {
+    NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", self.accessToken] };
     [self.requester httpGetWithURL:URL_USERS_PROFILE headers:headers callback:^(NSError *error, NSData *data) {
         if (error) {
             [self failedWithError:error];
@@ -80,6 +67,19 @@
 - (void)printData:(NSData *)data {
     NSString* dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"Response received: %@", dataString);
+}
+
+- (NSDictionary *)getJson:(NSData *)data {
+    NSError *error = nil;
+    id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    
+    if(error || ![object isKindOfClass:[NSDictionary class]]) {
+        NSLog(@"There was a problem deserializing from JSON");
+        return nil;
+    }
+    
+    NSDictionary *results = object;
+    return results;
 }
 
 #pragma mark - HttpReceiverDelegate

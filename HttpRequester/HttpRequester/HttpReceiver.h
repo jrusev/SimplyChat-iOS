@@ -11,7 +11,7 @@
 
 @interface HttpReceiver : NSObject<HttpRequesterDelegate>
 
-- (void)connect;
+- (void)login;
 
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) NSArray *users;

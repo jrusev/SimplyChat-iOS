@@ -14,7 +14,7 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
         HttpReceiver *receiver = [[HttpReceiver alloc] init];
-        [receiver connect];
+        [receiver login];
     
     }
     return 0;
