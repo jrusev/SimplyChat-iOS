@@ -23,13 +23,7 @@
     [request setCachePolicy:NSURLRequestReloadIgnoringCacheData]; // http://stackoverflow.com/a/405896
     [request setTimeoutInterval:60.0];
     
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:queue
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               callback(error, data);
-                           }];
-    
+    [self sendRequest:request callback:callback];    
 }
 
 - (void) httpGetWithURL:(NSString *)url headers:(NSDictionary *)headers callback:(void (^)(NSError *error, NSData *data))callback {
@@ -45,10 +39,14 @@
         [request setValue:value forHTTPHeaderField:key];
     }
     
+    [self sendRequest:request callback:callback];
+}
+
+- (void)sendRequest:(NSURLRequest*)request callback:(void (^)(NSError *error, NSData *data))callback {
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {                               
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                callback(error, data);
                            }];
 }
