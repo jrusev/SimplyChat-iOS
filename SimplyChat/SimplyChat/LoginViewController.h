@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HttpRequester.h"
 
-@interface LoginViewController : UIViewController<HttpRequesterDelegate>
+@interface LoginViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;

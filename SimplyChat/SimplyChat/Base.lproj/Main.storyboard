@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--Sign In-->
         <scene sceneID="E9R-CC-Jeu">
             <objects>
-                <viewController id="Nfg-X2-wKX" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController title="Sign In" id="Nfg-X2-wKX" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d0z-M8-I6k"/>
                         <viewControllerLayoutGuide type="bottom" id="Rj8-3I-kVP"/>
@@ -60,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="1544.25" y="309.5"/>
         </scene>
-        <!--Contacts View Controller-->
+        <!--Contacts-->
         <scene sceneID="hVt-Si-GIO">
             <objects>
-                <viewController storyboardIdentifier="ContactsVC" id="Fmt-aU-YZI" customClass="ContactsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactsVC" title="Contacts" id="Fmt-aU-YZI" customClass="ContactsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rnh-bg-1cn"/>
                         <viewControllerLayoutGuide type="bottom" id="TaU-cc-2uA"/>
@@ -71,9 +71,40 @@
                     <view key="view" contentMode="scaleToFill" id="npB-PL-aiq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mjj-rB-97e">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="va3-uJ-aMV">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="va3-uJ-aMV" id="Lq8-0f-IWO">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                </variation>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="mjj-rB-97e"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="mjj-rB-97e"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="contactsTableView" destination="mjj-rB-97e" id="6dy-fF-IQn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHL-px-Ibv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

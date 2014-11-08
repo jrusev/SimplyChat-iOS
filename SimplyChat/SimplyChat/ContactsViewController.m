@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.hidesBackButton = YES;
+    self.contactsTableView.dataSource = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +35,28 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - UITableViewDataSource
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.users.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [self.contactsTableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:@"Cell"];
+    }
+    
+    NSDictionary *contact = self.users[indexPath.row];
+    NSString *fullName = [NSString stringWithFormat:@"%@ %@", contact[@"firstName"], contact[@"lastName"]];
+    [cell.textLabel setText:fullName];
+    
+    return cell;
+}
 
 @end

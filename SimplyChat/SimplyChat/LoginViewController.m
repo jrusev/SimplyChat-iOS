@@ -12,6 +12,7 @@
 
 #define URL_AUTH_TOKEN @"/auth/token"
 #define URL_USERS_PROFILE @"/api/users/profile"
+#define URL_USERS_ALL @"/api/users"
 
 @interface LoginViewController ()
 
@@ -33,7 +34,6 @@ static NSString *baseUrl = @"http://localhost:1337";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.hidesBackButton = YES;
     id user = nil;
     if(user){
         [self segueToContacts];
@@ -45,15 +45,21 @@ static NSString *baseUrl = @"http://localhost:1337";
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"toContacts"]) {
+        // This will change the title on the next VC 'Back' button
+        self.navigationItem.backBarButtonItem =
+        [[UIBarButtonItem alloc] initWithTitle:@"Log Out"
+                                         style:UIBarButtonItemStylePlain
+                                        target:nil
+                                        action:nil];
+        ContactsViewController *nextVC = segue.destinationViewController;
+        nextVC.users = [self.users mutableCopy];
+    }
 }
-*/
 
 - (IBAction)loginButtonPressed:(id)sender {
     NSString *username = self.usernameTextField.text;
@@ -77,7 +83,7 @@ static NSString *baseUrl = @"http://localhost:1337";
     NSString *url = [baseUrl stringByAppendingString:URL_AUTH_TOKEN];
     [self.requester httpPostWithURL:url content:content callback:^(NSError *error, NSData *data) {
         if (error) {
-            [self failedWithError:error];
+            NSLog(@"Connection error: %@", error);
         } else {
             [self receivedToken:data];
         }
@@ -89,10 +95,7 @@ static NSString *baseUrl = @"http://localhost:1337";
 -(void)receivedToken:(NSData *)data {
     
     NSDictionary *jsonObj = [self getJson:data];
-    self.accessToken = jsonObj[@"access_token"];
-    
-    NSLog(@"access_token: %@", self.accessToken);
-    
+    self.accessToken = jsonObj[@"access_token"];     
     [self getUserProfile];
 }
 
@@ -101,9 +104,25 @@ static NSString *baseUrl = @"http://localhost:1337";
     NSString *url = [baseUrl stringByAppendingString:URL_USERS_PROFILE];
     [self.requester httpGetWithURL:url headers:headers callback:^(NSError *error, NSData *data) {
         if (error) {
-            [self failedWithError:error];
+            NSLog(@"Connection error: %@", error);
         } else {
-            [self receivedData:data];
+            NSDictionary *user = [self getJson:data];
+            NSLog(@"User profile: %@", user);
+            [self getAllUsers];
+        }
+    }];
+}
+
+- (void)getAllUsers {
+    NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", self.accessToken] };
+    NSString *url = [baseUrl stringByAppendingString:URL_USERS_ALL];
+    [self.requester httpGetWithURL:url headers:headers callback:^(NSError *error, NSData *data) {
+        if (error) {
+            NSLog(@"Connection error: %@", error);
+        } else {
+            NSDictionary *jsonObj = [self getJson:data];
+            self.users = jsonObj[@"users"];
+            [self segueToContacts];
         }
     }];
 }
@@ -130,25 +149,6 @@ static NSString *baseUrl = @"http://localhost:1337";
     dispatch_async(dispatch_get_main_queue(), ^{
         [self performSegueWithIdentifier:@"toContacts" sender:self];
     });
-}
-
-#pragma mark - HttpReceiverDelegate
-
--(void)receivedData:(NSData *)data {
-    
-    NSDictionary *jsonObj = [self getJson:data];
-    NSLog(@"JSON received: %@", jsonObj);
-    [self segueToContacts];
-}
-
-- (void)failedWithError:(NSError *)error {
-    NSLog(@"Connection error: %@", error);
-}
-
-// http://stackoverflow.com/a/405896
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
-    // return nil if no cached response should be stored for the connection.
-    return nil;
 }
 
 @end
