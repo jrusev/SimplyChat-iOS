@@ -10,27 +10,22 @@
 #import "ContactsViewController.h"
 #import "Notifier.h"
 #import "User.h"
-
-#define URL_AUTH_TOKEN @"/auth/token"
-#define URL_USERS_PROFILE @"/api/users/profile"
-#define URL_USERS_ALL @"/api/users"
+#import "ChatManager.h"
 
 @interface LoginViewController ()
 
+@property (nonatomic, strong) ChatManager *chatManager;
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) User *currentUser;
 @property (nonatomic, strong) NSMutableArray *users;
-@property (nonatomic, strong) HttpRequester *requester;
 
 @end
 
-static NSString *baseUrl = @"http://localhost:1337";
-
 @implementation LoginViewController
 
-- (HttpRequester *)requester {
-    if (!_requester) _requester = [[HttpRequester alloc] init];
-    return _requester;
+- (ChatManager *)chatManager {
+    if (!_chatManager) _chatManager = [[ChatManager alloc] init];
+    return _chatManager;
 }
 
 - (NSMutableArray *)users {
@@ -46,12 +41,6 @@ static NSString *baseUrl = @"http://localhost:1337";
         [self segueToContacts];
     }
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 #pragma mark - Navigation
 
@@ -70,68 +59,48 @@ static NSString *baseUrl = @"http://localhost:1337";
 
 - (IBAction)loginButtonPressed:(id)sender {
     NSString *username = self.usernameTextField.text;
-    NSString *password = self.passwordTextField.text;
-    
+    NSString *password = self.passwordTextField.text;    
+
     if(!username.length) {
         [Notifier showAlert:@"Error" message:@"Username cannot be empty!" andBtn:@"OK"];
     }
     else if(!password.length) {
         [Notifier showAlert:@"Error" message:@"Password cannot be empty!" andBtn:@"OK"];
     } else {
-        [self loginWithUserName:username andPassword:password];
+        [self.chatManager loginWithUserName:username password:password callback:^(NSError *error, NSString *accessToken) {
+            if (error) {
+                NSLog(@"Connection error: %@", error);
+            } else {
+                self.accessToken = accessToken;
+                NSLog(@"access_token: %@", accessToken);
+                [self getUserProfile];
+            }
+        }];
     }
-}
-
-- (void)loginWithUserName:(NSString *)username andPassword:(NSString *)password {
-    
-    NSString *content = [NSString stringWithFormat:@"&grant_type=password&client_id=%@&client_secret=%@&username=%@&password=%@",
-                         @"mobileV1", @"abc123456", username, password];
-    
-    NSString *url = [baseUrl stringByAppendingString:URL_AUTH_TOKEN];
-    [self.requester httpPostWithURL:url content:content callback:^(NSError *error, NSData *data) {
-        if (error) {
-            NSLog(@"Connection error: %@", error);
-        } else {
-            [self receivedToken:data];
-        }
-    }];
 }
 
 #pragma mark - private methods
 
--(void)receivedToken:(NSData *)data {
-    
-    NSDictionary *jsonObj = [self getJson:data];
-    self.accessToken = jsonObj[@"access_token"];     
-    [self getUserProfile];
-}
-
 - (void)getUserProfile {
-    NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", self.accessToken] };
-    NSString *url = [baseUrl stringByAppendingString:URL_USERS_PROFILE];
-    [self.requester httpGetWithURL:url headers:headers callback:^(NSError *error, NSData *data) {
+  
+    [self.chatManager getCurrentUserWithAuth:self.accessToken callback:^(NSError *error, User *user) {
         if (error) {
             NSLog(@"Connection error: %@", error);
         } else {
-            NSDictionary *userData = [self getJson:data];
-            self.currentUser = [[User alloc] initWithData:userData];
-            NSLog(@"User profile: %@", userData);
+            self.currentUser = user;
+            NSLog(@"Successful login: %@", user);
             [self getAllUsers];
         }
     }];
 }
 
 - (void)getAllUsers {
-    NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", self.accessToken] };
-    NSString *url = [baseUrl stringByAppendingString:URL_USERS_ALL];
-    [self.requester httpGetWithURL:url headers:headers callback:^(NSError *error, NSData *data) {
+  
+    [self.chatManager getAllUsersWithAuth:self.accessToken callback:^(NSError *error, NSArray *users) {
         if (error) {
             NSLog(@"Connection error: %@", error);
         } else {
-            NSDictionary *jsonObj = [self getJson:data];
-            for (NSDictionary* data in jsonObj[@"users"]) {
-                [self.users addObject:[[User alloc] initWithData:data]];
-            }
+            self.users = [users mutableCopy];
             [self segueToContacts];
         }
     }];
@@ -140,19 +109,6 @@ static NSString *baseUrl = @"http://localhost:1337";
 - (void)printData:(NSData *)data {
     NSString* dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"Response received: %@", dataString);
-}
-
-- (NSDictionary *)getJson:(NSData *)data {
-    NSError *error = nil;
-    id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    
-    if(error || ![object isKindOfClass:[NSDictionary class]]) {
-        NSLog(@"There was a problem deserializing from JSON");
-        return nil;
-    }
-    
-    NSDictionary *results = object;
-    return results;
 }
 
 - (void)segueToContacts {

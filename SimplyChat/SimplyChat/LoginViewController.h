@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HttpRequester.h"
 
 @interface LoginViewController : UIViewController
 
@@ -15,6 +14,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 - (IBAction)loginButtonPressed:(id)sender;
-- (void)loginWithUserName:(NSString *)username andPassword:(NSString *)password;
 
 @end

@@ -78,7 +78,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="D94-aA-Q46"/>
+                    <navigationItem key="navigationItem" title="Simply Chat" id="D94-aA-Q46"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="passwordTextField" destination="t7Q-2Q-kko" id="KDs-3f-N12"/>
@@ -152,6 +152,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ght-LU-BcI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="64T-bw-1rL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

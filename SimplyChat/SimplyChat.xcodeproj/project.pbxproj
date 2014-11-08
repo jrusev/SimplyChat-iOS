@@ -10,6 +10,7 @@
 		2B42B4B31A0D7ADD00BA1194 /* Notifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4B21A0D7ADD00BA1194 /* Notifier.m */; };
 		2B42B4B81A0DA11300BA1194 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4B71A0DA11300BA1194 /* ChatViewController.m */; };
 		2B42B4BB1A0DA5AF00BA1194 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4BA1A0DA5AF00BA1194 /* User.m */; };
+		2B42B4BF1A0E2BCF00BA1194 /* ChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4BE1A0E2BCF00BA1194 /* ChatManager.m */; };
 		2B77351E1A0D5D750012DFD1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B77351D1A0D5D750012DFD1 /* main.m */; };
 		2B7735211A0D5D750012DFD1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7735201A0D5D750012DFD1 /* AppDelegate.m */; };
 		2B7735271A0D5D750012DFD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7735251A0D5D750012DFD1 /* Main.storyboard */; };
@@ -38,6 +39,8 @@
 		2B42B4B71A0DA11300BA1194 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		2B42B4B91A0DA5AF00BA1194 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		2B42B4BA1A0DA5AF00BA1194 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		2B42B4BD1A0E2BCF00BA1194 /* ChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatManager.h; sourceTree = "<group>"; };
+		2B42B4BE1A0E2BCF00BA1194 /* ChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatManager.m; sourceTree = "<group>"; };
 		2B7735181A0D5D750012DFD1 /* SimplyChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplyChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B77351C1A0D5D750012DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B77351D1A0D5D750012DFD1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -84,6 +87,8 @@
 				2B7735451A0D733A0012DFD1 /* ContactsViewController.m */,
 				2B42B4B61A0DA11300BA1194 /* ChatViewController.h */,
 				2B42B4B71A0DA11300BA1194 /* ChatViewController.m */,
+				2B42B4BD1A0E2BCF00BA1194 /* ChatManager.h */,
+				2B42B4BE1A0E2BCF00BA1194 /* ChatManager.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				2B77351E1A0D5D750012DFD1 /* main.m in Sources */,
 				2B42B4B81A0DA11300BA1194 /* ChatViewController.m in Sources */,
 				2B7735431A0D5DE10012DFD1 /* LoginViewController.m in Sources */,
+				2B42B4BF1A0E2BCF00BA1194 /* ChatManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
