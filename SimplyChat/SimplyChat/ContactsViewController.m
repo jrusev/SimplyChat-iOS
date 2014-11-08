@@ -9,12 +9,20 @@
 #import "ContactsViewController.h"
 #import "ChatViewController.h"
 #import "User.h"
+#import "ChatManager.h"
 
 @interface ContactsViewController ()
+
+@property (strong, nonatomic) ChatManager *chatManager;
 
 @end
 
 @implementation ContactsViewController
+
+- (ChatManager *)chatManager {
+    if (!_chatManager) _chatManager = [[ChatManager alloc] init];
+    return _chatManager;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +41,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
+    // Segue to ChatViewController
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         
         NSIndexPath *path = [self.contactsTableView indexPathForCell:sender];
@@ -40,6 +49,20 @@
         
         ChatViewController *nextVC = segue.destinationViewController;
         nextVC.contact = contact;
+        nextVC.accessToken = self.accessToken;
+        [self.chatManager getAllMessagesWithUser:contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
+            if (nextVC) {
+                // The callback may execute on any thread. Because operations
+                // involving the UI are about to be performed, make sure they execute
+                // on the main thread.
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    nextVC.messages = [messages mutableCopy];
+                    // tell the VC to reload its data
+                    [nextVC updateUI];
+                });
+            }
+        }];
+        
         //nextVC.delegate = self;
     }
 }

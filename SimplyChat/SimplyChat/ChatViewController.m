@@ -7,6 +7,7 @@
 //
 
 #import "ChatViewController.h"
+#import "Message.h"
 
 @interface ChatViewController ()
 
@@ -19,11 +20,11 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = [self.contact description];
+    self.messagesTableView.dataSource = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)updateUI {
+    [self.messagesTableView reloadData];
 }
 
 /*
@@ -35,5 +36,26 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.messages.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [self.messagesTableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:@"Cell"];
+    }
+    
+    Message *message = self.messages[indexPath.row];
+    [cell.textLabel setText:message.content];
+    
+    return cell;
+}
 
 @end

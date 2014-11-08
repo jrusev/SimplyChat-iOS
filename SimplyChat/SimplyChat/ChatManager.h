@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "Message.h"
 
 @interface ChatManager : NSObject
 
 - (void)loginWithUserName:(NSString *)username password:(NSString *)password callback:(void (^)(NSError *error, NSString *accessToken))callback;
 - (void)getCurrentUserWithAuth:(NSString *)accessToken callback:(void (^)(NSError *error, User *user))callback;
 - (void)getAllUsersWithAuth:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *users))callback;
-
+- (void)getAllMessagesWithUser:(User *)user token:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *messages))callback;
 @end

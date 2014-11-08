@@ -53,7 +53,8 @@
                                         target:nil
                                         action:nil];
         ContactsViewController *nextVC = segue.destinationViewController;
-        nextVC.users = [self.users mutableCopy];        
+        nextVC.users = [self.users mutableCopy];
+        nextVC.accessToken = self.accessToken;
     }
 }
 

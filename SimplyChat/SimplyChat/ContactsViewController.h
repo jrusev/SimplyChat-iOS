@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *contactsTableView;
 @property (strong, nonatomic) NSMutableArray *users;
+@property (nonatomic, strong) NSString *accessToken;
 
 @end
