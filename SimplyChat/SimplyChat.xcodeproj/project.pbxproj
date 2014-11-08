@@ -104,13 +104,13 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
-		2B42B4BC1A0DA5BA00BA1194 /* Model */ = {
+		2B42B4BC1A0DA5BA00BA1194 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				2B42B4B91A0DA5AF00BA1194 /* User.h */,
 				2B42B4BA1A0DA5AF00BA1194 /* User.m */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		2B77350F1A0D5D750012DFD1 = {
@@ -136,7 +136,7 @@
 			children = (
 				2B7735251A0D5D750012DFD1 /* Main.storyboard */,
 				2B42B4B41A0D7B3900BA1194 /* Controllers */,
-				2B42B4BC1A0DA5BA00BA1194 /* Model */,
+				2B42B4BC1A0DA5BA00BA1194 /* Models */,
 				2B42B4B51A0D7B4200BA1194 /* Utilities */,
 				2B77351B1A0D5D750012DFD1 /* Supporting Files */,
 			);
