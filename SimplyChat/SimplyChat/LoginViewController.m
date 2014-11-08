@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "ContactsViewController.h"
 #import "Notifier.h"
+#import "User.h"
 
 #define URL_AUTH_TOKEN @"/auth/token"
 #define URL_USERS_PROFILE @"/api/users/profile"
@@ -17,7 +18,8 @@
 @interface LoginViewController ()
 
 @property (nonatomic, strong) NSString *accessToken;
-@property (nonatomic, strong) NSArray *users;
+@property (nonatomic, strong) User *currentUser;
+@property (nonatomic, strong) NSMutableArray *users;
 @property (nonatomic, strong) HttpRequester *requester;
 
 @end
@@ -29,6 +31,11 @@ static NSString *baseUrl = @"http://localhost:1337";
 - (HttpRequester *)requester {
     if (!_requester) _requester = [[HttpRequester alloc] init];
     return _requester;
+}
+
+- (NSMutableArray *)users {
+    if (!_users) _users = [NSMutableArray array];
+    return _users;
 }
 
 - (void)viewDidLoad {
@@ -57,7 +64,7 @@ static NSString *baseUrl = @"http://localhost:1337";
                                         target:nil
                                         action:nil];
         ContactsViewController *nextVC = segue.destinationViewController;
-        nextVC.users = [self.users mutableCopy];
+        nextVC.users = [self.users mutableCopy];        
     }
 }
 
@@ -106,8 +113,9 @@ static NSString *baseUrl = @"http://localhost:1337";
         if (error) {
             NSLog(@"Connection error: %@", error);
         } else {
-            NSDictionary *user = [self getJson:data];
-            NSLog(@"User profile: %@", user);
+            NSDictionary *userData = [self getJson:data];
+            self.currentUser = [[User alloc] initWithData:userData];
+            NSLog(@"User profile: %@", userData);
             [self getAllUsers];
         }
     }];
@@ -121,7 +129,9 @@ static NSString *baseUrl = @"http://localhost:1337";
             NSLog(@"Connection error: %@", error);
         } else {
             NSDictionary *jsonObj = [self getJson:data];
-            self.users = jsonObj[@"users"];
+            for (NSDictionary* data in jsonObj[@"users"]) {
+                [self.users addObject:[[User alloc] initWithData:data]];
+            }
             [self segueToContacts];
         }
     }];

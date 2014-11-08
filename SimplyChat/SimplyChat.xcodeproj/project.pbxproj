@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2B42B4B31A0D7ADD00BA1194 /* Notifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4B21A0D7ADD00BA1194 /* Notifier.m */; };
+		2B42B4B81A0DA11300BA1194 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4B71A0DA11300BA1194 /* ChatViewController.m */; };
+		2B42B4BB1A0DA5AF00BA1194 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4BA1A0DA5AF00BA1194 /* User.m */; };
 		2B77351E1A0D5D750012DFD1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B77351D1A0D5D750012DFD1 /* main.m */; };
 		2B7735211A0D5D750012DFD1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7735201A0D5D750012DFD1 /* AppDelegate.m */; };
 		2B7735271A0D5D750012DFD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7735251A0D5D750012DFD1 /* Main.storyboard */; };
@@ -32,6 +34,10 @@
 /* Begin PBXFileReference section */
 		2B42B4B11A0D7ADD00BA1194 /* Notifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifier.h; sourceTree = "<group>"; };
 		2B42B4B21A0D7ADD00BA1194 /* Notifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notifier.m; sourceTree = "<group>"; };
+		2B42B4B61A0DA11300BA1194 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		2B42B4B71A0DA11300BA1194 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		2B42B4B91A0DA5AF00BA1194 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		2B42B4BA1A0DA5AF00BA1194 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		2B7735181A0D5D750012DFD1 /* SimplyChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplyChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B77351C1A0D5D750012DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B77351D1A0D5D750012DFD1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -76,6 +82,8 @@
 				2B7735421A0D5DE10012DFD1 /* LoginViewController.m */,
 				2B7735441A0D733A0012DFD1 /* ContactsViewController.h */,
 				2B7735451A0D733A0012DFD1 /* ContactsViewController.m */,
+				2B42B4B61A0DA11300BA1194 /* ChatViewController.h */,
+				2B42B4B71A0DA11300BA1194 /* ChatViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -89,6 +97,15 @@
 				2B42B4B21A0D7ADD00BA1194 /* Notifier.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		2B42B4BC1A0DA5BA00BA1194 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2B42B4B91A0DA5AF00BA1194 /* User.h */,
+				2B42B4BA1A0DA5AF00BA1194 /* User.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		2B77350F1A0D5D750012DFD1 = {
@@ -114,6 +131,7 @@
 			children = (
 				2B7735251A0D5D750012DFD1 /* Main.storyboard */,
 				2B42B4B41A0D7B3900BA1194 /* Controllers */,
+				2B42B4BC1A0DA5BA00BA1194 /* Model */,
 				2B42B4B51A0D7B4200BA1194 /* Utilities */,
 				2B77351B1A0D5D750012DFD1 /* Supporting Files */,
 			);
@@ -250,11 +268,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B42B4BB1A0DA5AF00BA1194 /* User.m in Sources */,
 				2B77354C1A0D75650012DFD1 /* HttpRequester.m in Sources */,
 				2B7735211A0D5D750012DFD1 /* AppDelegate.m in Sources */,
 				2B7735461A0D733A0012DFD1 /* ContactsViewController.m in Sources */,
 				2B42B4B31A0D7ADD00BA1194 /* Notifier.m in Sources */,
 				2B77351E1A0D5D750012DFD1 /* main.m in Sources */,
+				2B42B4B81A0DA11300BA1194 /* ChatViewController.m in Sources */,
 				2B7735431A0D5DE10012DFD1 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
