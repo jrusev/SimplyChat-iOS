@@ -8,12 +8,20 @@
 
 #import "ChatViewController.h"
 #import "Message.h"
+#import "ChatManager.h"
 
 @interface ChatViewController ()
+
+@property (strong, nonatomic) ChatManager *chatManager;
 
 @end
 
 @implementation ChatViewController
+
+- (ChatManager *)chatManager {
+    if (!_chatManager) _chatManager = [[ChatManager alloc] init];
+    return _chatManager;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,6 +64,21 @@
     [cell.textLabel setText:message.content];
     
     return cell;
+}
+
+- (IBAction)sendButtonPressed:(id)sender {
+    NSString *message = self.messageTextField.text;
+    if (!message.length) {
+        return;
+    }
+    
+    [self.chatManager sendMessageWithContent:message toUser:self.contact accessToken:self.accessToken callback:^(NSError *error, Message *message) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            NSLog(@"Message sent: %@", message);
+        }
+    }];
 }
 
 @end

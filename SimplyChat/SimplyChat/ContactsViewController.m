@@ -51,6 +51,10 @@
         nextVC.contact = contact;
         nextVC.accessToken = self.accessToken;
         [self.chatManager getAllMessagesWithUser:contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
+            if (error) {
+                NSLog(@"Error: %@", error);
+                return;
+            }
             if (nextVC) {
                 // The callback may execute on any thread. Because operations
                 // involving the UI are about to be performed, make sure they execute

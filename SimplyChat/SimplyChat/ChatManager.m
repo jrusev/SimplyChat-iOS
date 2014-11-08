@@ -13,6 +13,7 @@
 #define URL_USERS_PROFILE @"/api/users/profile"
 #define URL_USERS_ALL @"/api/users"
 #define URL_MESSAGES_WITHUSER @"/api/messages/withUser"
+#define URL_MESSAGES_SEND @"/api/messages/send"
 
 @interface ChatManager ()
 
@@ -35,7 +36,7 @@ static NSString *baseUrl = @"http://localhost:1337";
                          @"mobileV1", @"abc123456", username, password];
     
     NSString *url = [baseUrl stringByAppendingString:URL_AUTH_TOKEN];
-    [self.requester httpPostWithURL:url content:content callback:^(NSError *error, NSData *data) {
+    [self.requester httpPostWithURL:url headers:nil content:content callback:^(NSError *error, NSData *data) {
         if (error) {
             callback(error, nil);
         } else {
@@ -46,7 +47,7 @@ static NSString *baseUrl = @"http://localhost:1337";
     }];
 }
 
-- (void)getCurrentUserWithAuth:(NSString *)accessToken callback:(void (^)(NSError *error, User *user))callback {
+- (void)getCurrentUserWithToken:(NSString *)accessToken callback:(void (^)(NSError *error, User *user))callback {
     NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", accessToken] };
     NSString *url = [baseUrl stringByAppendingString:URL_USERS_PROFILE];
     [self.requester httpGetWithURL:url headers:headers callback:^(NSError *error, NSData *data) {
@@ -60,7 +61,7 @@ static NSString *baseUrl = @"http://localhost:1337";
     }];
 }
 
-- (void)getAllUsersWithAuth:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *users))callback {
+- (void)getAllUsersWithToken:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *users))callback {
     NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", accessToken] };
     NSString *url = [baseUrl stringByAppendingString:URL_USERS_ALL];
     [self.requester httpGetWithURL:url headers:headers callback:^(NSError *error, NSData *data) {
@@ -90,6 +91,26 @@ static NSString *baseUrl = @"http://localhost:1337";
                 [messages addObject:[[Message alloc] initWithData:data]];
             }
             callback(nil, messages);
+        }
+    }];
+}
+
+- (void)sendMessageWithContent:(NSString *)content
+             toUser:(User *)toUser
+        accessToken:(NSString *)accessToken
+           callback:(void (^)(NSError *error, Message *message))callback
+{
+    NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", accessToken] };
+    NSString *contentEncoded = [NSString stringWithFormat:@"&title=%@&content=%@", @"no title", content];
+    NSString *url = [NSString stringWithFormat:@"%@%@/%@", baseUrl, URL_MESSAGES_SEND, toUser.username];
+    
+    [self.requester httpPostWithURL:url headers:headers content:contentEncoded callback:^(NSError *error, NSData *data) {
+        if (error) {
+            callback(error, nil);
+        } else {
+            NSDictionary *jsonObj = [self getJson:data];
+            Message *messageFromDb = [[Message alloc] initWithData:jsonObj[@"message"]];
+            callback(nil, messageFromDb);
         }
     }];
 }

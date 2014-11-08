@@ -13,7 +13,11 @@
 @interface ChatManager : NSObject
 
 - (void)loginWithUserName:(NSString *)username password:(NSString *)password callback:(void (^)(NSError *error, NSString *accessToken))callback;
-- (void)getCurrentUserWithAuth:(NSString *)accessToken callback:(void (^)(NSError *error, User *user))callback;
-- (void)getAllUsersWithAuth:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *users))callback;
+- (void)getCurrentUserWithToken:(NSString *)accessToken callback:(void (^)(NSError *error, User *user))callback;
+- (void)getAllUsersWithToken:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *users))callback;
 - (void)getAllMessagesWithUser:(User *)user token:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *messages))callback;
+- (void)sendMessageWithContent:(NSString *)content
+             toUser:(User *)toUser
+        accessToken:(NSString *)accessToken
+           callback:(void (^)(NSError *error, Message *message))callback;
 @end

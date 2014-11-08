@@ -70,7 +70,7 @@
     } else {
         [self.chatManager loginWithUserName:username password:password callback:^(NSError *error, NSString *accessToken) {
             if (error) {
-                NSLog(@"Connection error: %@", error);
+                NSLog(@"Error: %@", error);
             } else {
                 self.accessToken = accessToken;
                 NSLog(@"access_token: %@", accessToken);
@@ -84,9 +84,9 @@
 
 - (void)getUserProfile {
   
-    [self.chatManager getCurrentUserWithAuth:self.accessToken callback:^(NSError *error, User *user) {
+    [self.chatManager getCurrentUserWithToken:self.accessToken callback:^(NSError *error, User *user) {
         if (error) {
-            NSLog(@"Connection error: %@", error);
+            NSLog(@"Error: %@", error);
         } else {
             self.currentUser = user;
             NSLog(@"Successful login: %@", user);
@@ -97,9 +97,9 @@
 
 - (void)getAllUsers {
   
-    [self.chatManager getAllUsersWithAuth:self.accessToken callback:^(NSError *error, NSArray *users) {
+    [self.chatManager getAllUsersWithToken:self.accessToken callback:^(NSError *error, NSArray *users) {
         if (error) {
-            NSLog(@"Connection error: %@", error);
+            NSLog(@"Error: %@", error);
         } else {
             self.users = [users mutableCopy];
             [self segueToContacts];

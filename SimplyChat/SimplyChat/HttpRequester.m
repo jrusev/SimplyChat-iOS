@@ -10,7 +10,10 @@
 
 @implementation HttpRequester
 
-- (void)httpPostWithURL:(NSString *)url content:(NSString *)content callback:(void (^)(NSError *error, NSData *data))callback {
+- (void)httpPostWithURL:(NSString *)url
+                headers:(NSDictionary *)headers
+                content:(NSString *)content
+               callback:(void (^)(NSError *error, NSData *data))callback {
     
     NSData *postData = [content dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)postData.length];
@@ -21,7 +24,12 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Current-Type"];
     [request setHTTPBody:postData];
     [request setCachePolicy:NSURLRequestReloadIgnoringCacheData]; // http://stackoverflow.com/a/405896
-    [request setTimeoutInterval:60.0];
+    [request setTimeoutInterval:60.0];    
+    
+    for (NSString* key in headers) {
+        NSString* value = [headers objectForKey:key];
+        [request setValue:value forHTTPHeaderField:key];
+    }
     
     [self sendRequest:request callback:callback];    
 }

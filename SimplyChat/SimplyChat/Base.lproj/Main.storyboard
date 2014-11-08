@@ -188,6 +188,9 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="321" y="628" width="38" height="32"/>
                                 </variation>
+                                <connections>
+                                    <action selector="sendButtonPressed:" destination="bPr-Mm-G2z" eventType="touchUpInside" id="Gea-m5-088"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -208,6 +211,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="messageTextField" destination="s2p-Tj-PiD" id="ndC-R3-IEj"/>
                         <outlet property="messagesTableView" destination="hNR-wQ-tre" id="Slg-HT-RqU"/>
                     </connections>
                 </viewController>

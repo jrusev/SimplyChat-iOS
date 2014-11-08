@@ -24,6 +24,7 @@
     if (self){
         self.title = data[MESSAGE_TITLE];
         self.content = data[MESSAGE_CONTENT];
+        // TODO: init date
         self.date = data[MESSAGE_DATE];
         self.to = [[User alloc] initWithData:data[MESSAGE_TO]];
         self.from = [[User alloc] initWithData:data[MESSAGE_FROM]];
