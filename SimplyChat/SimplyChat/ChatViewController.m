@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"%@", self.contact);
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = [self.contact description];
 }
 
