@@ -53,6 +53,8 @@
     // Start the update timer
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     self.firstLoad = YES;
+    [self registerForKeyboardNotifications];
+    self.messageTextField.delegate = self;
 }
 
 - (void)updateUI {
@@ -71,6 +73,12 @@
         [_timer invalidate];
         _timer = nil;
     }
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    [self freeKeyboardNotifications];
 }
 
 - (void)onTimerTick:(NSTimer*)timer
@@ -131,7 +139,7 @@
     BOOL fromCurrentUser = [message.from.username isEqualToString:self.currentUser.username];
    
     // Content
-    UILabel *lbl1 = [[UILabel alloc]initWithFrame:CGRectMake(16, 5, 150, 30)];
+    UILabel *lbl1 = [[UILabel alloc]initWithFrame:CGRectMake(16, 5, 240, 30)];
     [lbl1 setFont:[UIFont fontWithName:@"Helvetica Neue" size:18.0]];
     [lbl1 setTextColor:[UIColor blackColor]];
     lbl1.text = message.content;
@@ -144,7 +152,7 @@
     lbl2.text = formattedDate;
     [cell addSubview:lbl2];
     
-    // Date
+    // Author
     UILabel *lbl3 = [[UILabel alloc]initWithFrame:CGRectMake(260, 15, 150, 30)];
     [lbl3 setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0]];
     [lbl3 setTextColor:[UIColor grayColor]];
@@ -166,6 +174,8 @@
 }
 
 - (IBAction)sendButtonPressed:(id)sender {
+    [self.messageTextField resignFirstResponder];
+    
     NSString *message = [self.messageTextField.text copy];
     if (!message.length) {
         return;
@@ -181,6 +191,82 @@
             [self updateUI];
         }
     }];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self sendButtonPressed:nil];
+    return NO;
+}
+
+#pragma mark - show/hide the keyboard
+
+- (IBAction)textFieldDoneEditing:(id)sender
+{
+    [sender resignFirstResponder];
+    [self sendButtonPressed:nil];
+}
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+
+- (void)freeKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSLog(@"Keyboard was shown");
+    NSDictionary* info = [aNotification userInfo];
+    
+    // Get animation info from userInfo
+    NSTimeInterval animationDuration;
+    UIViewAnimationCurve animationCurve;
+    CGRect keyboardFrame;
+    [[info objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&keyboardFrame];
+    
+    // Move
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    [UIView setAnimationCurve:animationCurve];
+    NSLog(@"frame..%f..%f..%f..%f",self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+    NSLog(@"keyboard..%f..%f..%f..%f",keyboardFrame.origin.x, keyboardFrame.origin.y, keyboardFrame.size.width, keyboardFrame.size.height);
+    [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y- keyboardFrame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.messagesTableView setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+ keyboardFrame.size.height, self.view.frame.size.width, self.view.frame.size.height-keyboardFrame.size.height)];
+    [self.messagesTableView scrollsToTop];
+    [UIView commitAnimations];
+    
+}
+
+-(void) keyboardWillHide:(NSNotification*)aNotification
+{
+    NSLog(@"Keyboard will hide");
+    NSDictionary* info = [aNotification userInfo];
+    
+    // Get animation info from userInfo
+    NSTimeInterval animationDuration;
+    UIViewAnimationCurve animationCurve;
+    CGRect keyboardFrame;
+    [[info objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&keyboardFrame];
+    
+    // Move
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    [UIView setAnimationCurve:animationCurve];
+    [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + keyboardFrame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.messagesTableView setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
+    [UIView commitAnimations];
 }
 
 @end

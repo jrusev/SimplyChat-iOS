@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@interface ChatViewController : UIViewController<UITableViewDataSource>
+@interface ChatViewController : UIViewController<UITableViewDataSource, UITextFieldDelegate>
 
 - (void)updateUI;
 
@@ -20,6 +20,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
 @property (nonatomic, strong) User *currentUser;
 
-- (IBAction)sendButtonPressed:(id)sender;
+-(IBAction)sendButtonPressed:(id)sender;
+-(IBAction) textFieldDoneEditing:(id) sender;
+
+-(void) registerForKeyboardNotifications;
+-(void) freeKeyboardNotifications;
+-(void) keyboardWasShown:(NSNotification*)aNotification;
+-(void) keyboardWillHide:(NSNotification*)aNotification;
 
 @end
