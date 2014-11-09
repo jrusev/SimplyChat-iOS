@@ -8,7 +8,6 @@
 
 #import "ContactsViewController.h"
 #import "ChatViewController.h"
-#import "User.h"
 #import "ChatManager.h"
 
 @interface ContactsViewController ()
@@ -50,6 +49,7 @@
         ChatViewController *nextVC = segue.destinationViewController;
         nextVC.contact = contact;
         nextVC.accessToken = self.accessToken;
+        nextVC.currentUser = self.currentUser;
         [self.chatManager getAllMessagesWithUser:contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
             if (error) {
                 NSLog(@"Error: %@", error);

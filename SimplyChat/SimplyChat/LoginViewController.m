@@ -55,6 +55,7 @@
         ContactsViewController *nextVC = segue.destinationViewController;
         nextVC.users = [self.users mutableCopy];
         nextVC.accessToken = self.accessToken;
+        nextVC.currentUser = self.currentUser;
     }
 }
 

@@ -122,8 +122,45 @@
         
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, h:mm a"];
-    cell.detailTextLabel.text = [formatter stringFromDate:message.date];
+    NSString *formattedDate =[ formatter stringFromDate:message.date];
+    cell.detailTextLabel.text = formattedDate;
     
+    for(UIView *eachView in [cell subviews])
+        [eachView removeFromSuperview];
+    
+   
+    // Content
+    UILabel *lbl1 = [[UILabel alloc]initWithFrame:CGRectMake(16, 5, 150, 30)];
+    [lbl1 setFont:[UIFont fontWithName:@"Helvetica Neue" size:18.0]];
+    [lbl1 setTextColor:[UIColor blackColor]];
+    lbl1.text = message.content;
+    [cell addSubview:lbl1];
+    
+    // Date
+    UILabel *lbl2 = [[UILabel alloc]initWithFrame:CGRectMake(260, 0, 150, 30)];
+    [lbl2 setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0]];
+    [lbl2 setTextColor:[UIColor grayColor]];
+    lbl2.text = formattedDate;
+    [cell addSubview:lbl2];
+    
+    // Date
+    UILabel *lbl3 = [[UILabel alloc]initWithFrame:CGRectMake(260, 15, 150, 30)];
+    [lbl3 setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0]];
+    [lbl3 setTextColor:[UIColor grayColor]];
+    lbl3.text = message.from.firstName;
+    [cell addSubview:lbl3];
+    
+    // fix for separators
+
+    if ([message.from.username isEqualToString:self.currentUser.username]) {
+        cell.backgroundColor = [UIColor clearColor];
+    } else {
+        cell.backgroundColor = [UIColor colorWithRed:0.3 green:0.5 blue:1.0 alpha:1];
+        lbl1.textColor = [UIColor whiteColor];
+        lbl2.textColor = [UIColor whiteColor];
+        lbl3.textColor = [UIColor whiteColor];
+    }
+   
     return cell;
 }
 

@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSMutableArray *messages;
 @property (nonatomic, strong) NSString *accessToken;
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
+@property (nonatomic, strong) User *currentUser;
 
 - (IBAction)sendButtonPressed:(id)sender;
 
