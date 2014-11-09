@@ -128,6 +128,7 @@
     for(UIView *eachView in [cell subviews])
         [eachView removeFromSuperview];
     
+    BOOL fromCurrentUser = [message.from.username isEqualToString:self.currentUser.username];
    
     // Content
     UILabel *lbl1 = [[UILabel alloc]initWithFrame:CGRectMake(16, 5, 150, 30)];
@@ -147,12 +148,12 @@
     UILabel *lbl3 = [[UILabel alloc]initWithFrame:CGRectMake(260, 15, 150, 30)];
     [lbl3 setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0]];
     [lbl3 setTextColor:[UIColor grayColor]];
-    lbl3.text = message.from.firstName;
+    lbl3.text = fromCurrentUser ? @"me" : message.from.firstName;
     [cell addSubview:lbl3];
     
     // fix for separators
 
-    if ([message.from.username isEqualToString:self.currentUser.username]) {
+    if (fromCurrentUser ) {
         cell.backgroundColor = [UIColor clearColor];
     } else {
         cell.backgroundColor = [UIColor colorWithRed:0.3 green:0.5 blue:1.0 alpha:1];
