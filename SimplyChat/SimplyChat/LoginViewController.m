@@ -71,7 +71,10 @@
     } else {
         [self.chatManager loginWithUserName:username password:password callback:^(NSError *error, NSString *accessToken) {
             if (error) {
-                NSLog(@"Error: %@", error);
+                NSLog(@"[LoginViewController] Error: %@", [error localizedDescription]);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [Notifier showAlert:@"Error" message:@"Username or password did not match!" andBtn:@"OK"];
+                });
             } else {
                 self.accessToken = accessToken;
                 [self getUserProfile];
@@ -86,7 +89,7 @@
   
     [self.chatManager getCurrentUserWithToken:self.accessToken callback:^(NSError *error, User *user) {
         if (error) {
-            NSLog(@"Error: %@", error);
+            NSLog(@"[LoginViewController] Error: %@", [error localizedDescription]);
         } else {
             self.currentUser = user;
             NSLog(@"Successful login: %@", user);
@@ -99,7 +102,7 @@
   
     [self.chatManager getAllUsersWithToken:self.accessToken callback:^(NSError *error, NSArray *users) {
         if (error) {
-            NSLog(@"Error: %@", error);
+            NSLog(@"[LoginViewController] Error: %@", [error localizedDescription]);
         } else {
             self.users = [users mutableCopy];
             [self segueToContacts];

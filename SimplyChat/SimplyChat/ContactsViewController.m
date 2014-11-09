@@ -52,7 +52,7 @@
         nextVC.currentUser = self.currentUser;
         [self.chatManager getAllMessagesWithUser:contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
             if (error) {
-                NSLog(@"Error: %@", error);
+                NSLog(@"[ContactsViewController] Error: %@", [error localizedDescription]);
                 return;
             }
             if (nextVC) {

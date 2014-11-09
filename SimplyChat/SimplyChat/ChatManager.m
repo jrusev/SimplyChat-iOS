@@ -41,6 +41,13 @@ static NSString *baseUrl = @"http://localhost:1337";
             callback(error, nil);
         } else {
             NSDictionary *jsonObj = [self getJson:data];
+            
+            if (jsonObj[@"error"]) {
+                NSError *error = [self createErrorWithMessage:jsonObj[@"error"]];
+                callback(error, nil);
+                return;
+            }
+            
             NSString *accessToken = jsonObj[@"access_token"];
             callback(nil, accessToken);
         }
@@ -54,8 +61,8 @@ static NSString *baseUrl = @"http://localhost:1337";
         if (error) {
             callback(error, nil);
         } else {
-            NSDictionary *userData = [self getJson:data];
-            User *currentUser = [[User alloc] initWithData:userData];
+            NSDictionary *jsonObj = [self getJson:data];
+            User *currentUser = [[User alloc] initWithData:jsonObj];
             callback(nil, currentUser);
         }
     }];
@@ -69,6 +76,13 @@ static NSString *baseUrl = @"http://localhost:1337";
             callback(error, nil);
         } else {
             NSDictionary *jsonObj = [self getJson:data];
+            
+            if (jsonObj[@"error"]) {
+                NSError *error = [self createErrorWithMessage:jsonObj[@"error"]];
+                callback(error, nil);
+                return;
+            }
+            
             NSMutableArray *users = [NSMutableArray array];
             for (NSDictionary* data in jsonObj[@"users"]) {
                 [users addObject:[[User alloc] initWithData:data]];
@@ -86,6 +100,13 @@ static NSString *baseUrl = @"http://localhost:1337";
             callback(error, nil);
         } else {
             NSDictionary *jsonObj = [self getJson:data];
+            
+            if (jsonObj[@"error"]) {
+                NSError *error = [self createErrorWithMessage:jsonObj[@"error"]];
+                callback(error, nil);
+                return;
+            }
+            
             NSMutableArray *messages = [NSMutableArray array];
             for (NSDictionary* data in jsonObj[@"messages"]) {
                 [messages addObject:[[Message alloc] initWithData:data]];
@@ -103,6 +124,13 @@ static NSString *baseUrl = @"http://localhost:1337";
             callback(error, nil);
         } else {
             NSDictionary *jsonObj = [self getJson:data];
+            
+            if (jsonObj[@"error"]) {
+                NSError *error = [self createErrorWithMessage:jsonObj[@"error"]];
+                callback(error, nil);
+                return;
+            }
+            
             NSMutableArray *messages = [NSMutableArray array];
             for (NSDictionary* data in jsonObj[@"messages"]) {
                 [messages addObject:[[Message alloc] initWithData:data]];
@@ -126,6 +154,13 @@ static NSString *baseUrl = @"http://localhost:1337";
             callback(error, nil);
         } else {
             NSDictionary *jsonObj = [self getJson:data];
+            
+            if (jsonObj[@"error"]) {
+                NSError *error = [self createErrorWithMessage:jsonObj[@"error"]];
+                callback(error, nil);
+                return;
+            }
+            
             Message *messageFromDb = [[Message alloc] initWithData:jsonObj[@"message"]];
             callback(nil, messageFromDb);
         }
@@ -145,6 +180,13 @@ static NSString *baseUrl = @"http://localhost:1337";
     
     NSDictionary *results = object;
     return results;
+}
+
+- (NSError *)createErrorWithMessage:(NSString *)message {
+    NSMutableDictionary* details = [NSMutableDictionary dictionary];
+    [details setValue:message forKey:NSLocalizedDescriptionKey];
+    NSError *error = [NSError errorWithDomain:@"HttpRequest" code:400 userInfo:details];
+    return error;
 }
 
 @end

@@ -86,12 +86,12 @@
     NSLog(@"Tick...");
     [self.chatManager getUnreadMessagesWithUser:self.contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
         if (error) {
-            NSLog(@"Error: %@", error);
+            NSLog(@"[ChatViewController] Error: %@", [error localizedDescription]);
             return;
         }
         
         if (messages) {
-            NSLog(@"%@",messages);
+            NSLog(@"Unread messages: %@",messages);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.messages addObjectsFromArray:messages];
                 [self updateUI];
@@ -184,7 +184,7 @@
     self.messageTextField.text = @"";
     [self.chatManager sendMessageWithContent:message toUser:self.contact accessToken:self.accessToken callback:^(NSError *error, Message *message) {
         if (error) {
-            NSLog(@"Error: %@", error);
+            NSLog(@"[ChatViewController] Error: %@", [error localizedDescription]);
         } else {
             NSLog(@"Message sent: %@", message);
             [self.messages addObject:message];
@@ -223,7 +223,6 @@
 
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
-    NSLog(@"Keyboard was shown");
     NSDictionary* info = [aNotification userInfo];
     
     // Get animation info from userInfo
@@ -238,8 +237,6 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:animationDuration];
     [UIView setAnimationCurve:animationCurve];
-    NSLog(@"frame..%f..%f..%f..%f",self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-    NSLog(@"keyboard..%f..%f..%f..%f",keyboardFrame.origin.x, keyboardFrame.origin.y, keyboardFrame.size.width, keyboardFrame.size.height);
     [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y- keyboardFrame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
     [self.messagesTableView setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+ keyboardFrame.size.height, self.view.frame.size.width, self.view.frame.size.height-keyboardFrame.size.height)];
     [self.messagesTableView scrollsToTop];
@@ -249,7 +246,6 @@
 
 -(void) keyboardWillHide:(NSNotification*)aNotification
 {
-    NSLog(@"Keyboard will hide");
     NSDictionary* info = [aNotification userInfo];
     
     // Get animation info from userInfo
