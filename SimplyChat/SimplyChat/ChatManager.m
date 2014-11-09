@@ -107,7 +107,7 @@ static NSString *baseUrl = @"http://localhost:1337";
             for (NSDictionary* data in jsonObj[@"messages"]) {
                 [messages addObject:[[Message alloc] initWithData:data]];
             }
-            callback(nil, messages);
+            callback(error, messages.count ? messages : nil);
         }
     }];
 }

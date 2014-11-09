@@ -17,9 +17,13 @@
 @property (strong, nonatomic) ChatManager *chatManager;
 @property (strong, nonatomic) NSTimer *timer;
 
+- (void)onTimerTick:(NSTimer*)timer;
+
 @end
 
 @implementation ChatViewController
+
+#pragma mark - properties
 
 - (NSTimer *) timer {
     if (!_timer) {
@@ -38,31 +42,15 @@
     return _messages;
 }
 
+#pragma mark - View management
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = [self.contact description];
     self.messagesTableView.dataSource = self;
+    // Start the update timer
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
-}
-
-- (void)onTimerTick:(NSTimer*)timer
-{
-    NSLog(@"Tick...");
-    [self.chatManager getUnreadMessagesWithUser:self.contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-            return;
-        }
-        
-        if (messages) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.messages addObjectsFromArray:messages];
-                [self updateUI];
-            });
-        }
-    }];
 }
 
 - (void)updateUI {
@@ -80,6 +68,25 @@
         [_timer invalidate];
         _timer = nil;
     }
+}
+
+- (void)onTimerTick:(NSTimer*)timer
+{
+    NSLog(@"Tick...");
+    [self.chatManager getUnreadMessagesWithUser:self.contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+            return;
+        }
+        
+        if (messages) {
+            NSLog(@"%@",messages);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.messages addObjectsFromArray:messages];
+                [self updateUI];
+            });
+        }
+    }];
 }
 
 /*
