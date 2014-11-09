@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) ChatManager *chatManager;
 @property (strong, nonatomic) NSTimer *timer;
+@property (nonatomic) BOOL firstLoad;
 
 - (void)onTimerTick:(NSTimer*)timer;
 
@@ -51,6 +52,7 @@
     self.messagesTableView.dataSource = self;
     // Start the update timer
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+    self.firstLoad = YES;
 }
 
 - (void)updateUI {
@@ -58,7 +60,8 @@
     if (self.messagesTableView.contentSize.height > self.messagesTableView.frame.size.height)
     {
         CGPoint offset = CGPointMake(0, self.messagesTableView.contentSize.height - self.messagesTableView.frame.size.height);
-        [self.messagesTableView setContentOffset:offset animated:YES];
+        [self.messagesTableView setContentOffset:offset animated:!self.firstLoad];
+        self.firstLoad = NO;
     }
 }
 
