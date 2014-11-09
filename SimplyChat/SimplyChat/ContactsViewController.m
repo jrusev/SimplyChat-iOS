@@ -28,6 +28,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = YES;
     self.contactsTableView.dataSource = self;
+    self.contactsTableView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,9 +42,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     // Segue to ChatViewController
-    if ([sender isKindOfClass:[UITableViewCell class]]) {
-        
-        NSIndexPath *path = [self.contactsTableView indexPathForCell:sender];
+    if ([segue.identifier isEqualToString:@"toChat"]) {
+            
+        NSIndexPath *path = sender;
+        //NSIndexPath *path = [self.contactsTableView indexPathForCell:sender];
         User *contact = self.users[path.row];
         
         ChatViewController *nextVC = segue.destinationViewController;
@@ -66,8 +68,6 @@
                 });
             }
         }];
-        
-        //nextVC.delegate = self;
     }
 }
 
@@ -75,6 +75,14 @@
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"accessoryButtonTapped");
+    [self performSegueWithIdentifier:@"toChat" sender:indexPath];
+}
+
+// When the user taps a cell in the tableView
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"didSelectRow");
     [self performSegueWithIdentifier:@"toChat" sender:indexPath];
 }
 
@@ -96,6 +104,8 @@
     User *contact = self.users[indexPath.row];
     NSString *fullName = [NSString stringWithFormat:@"%@ %@", contact.firstName, contact.lastName];
     [cell.textLabel setText:fullName];
+    
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
 }

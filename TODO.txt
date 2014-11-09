@@ -10,7 +10,6 @@ Data
 4. Save current user globally
 5. Send location
 6. Swipe to get back
-7. Show error when 404 or wrong user/pass
 8. User model has contacts ?
 9. Upload to Heroku + MongoDB
 
