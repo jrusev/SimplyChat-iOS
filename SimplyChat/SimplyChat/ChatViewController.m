@@ -15,13 +15,18 @@
 @interface ChatViewController ()
 
 @property (strong, nonatomic) ChatManager *chatManager;
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 
 @implementation ChatViewController
 
-NSTimer *_timer;
-BOOL _initialLoad;
+- (NSTimer *) timer {
+    if (!_timer) {
+        _timer = [NSTimer timerWithTimeInterval:REFRESH_INTERVAL target:self selector:@selector(onTimerTick:) userInfo:nil repeats:YES];
+    }
+    return _timer;
+}
 
 - (ChatManager *)chatManager {
     if (!_chatManager) _chatManager = [[ChatManager alloc] init];
@@ -35,57 +40,18 @@ BOOL _initialLoad;
     self.navigationItem.title = [self.contact description];
     self.messagesTableView.dataSource = self;
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:REFRESH_INTERVAL target:self selector:@selector(update:) userInfo:nil repeats:YES];
-    [_timer fire];
-    
-    // The BOOL ivar initialLoad is set to TRUE in viewDidLoad.
-    _initialLoad = YES;
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
 }
 
-- (void) viewDidAppear:(BOOL)animated
+- (void)onTimerTick:(NSTimer*)timer
 {
-    [super viewDidAppear:animated];
-    if (self.messagesTableView.contentSize.height > self.messagesTableView.frame.size.height)
-    {
-        CGPoint offset = CGPointMake(0, self.messagesTableView.contentSize.height - self.messagesTableView.frame.size.height);
-        [self.messagesTableView setContentOffset:offset animated:YES];
-    }
-}
-//
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    // on the initial cell load scroll to the last row (ie the latest Note)
-//    if (_initialLoad == YES) {
-//        _initialLoad = NO;
-//        NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:([self.messagesTableView numberOfRowsInSection:0] - 1) inSection:0];
-//        [self.messagesTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-//        CGPoint offset = CGPointMake(0, (1000000.0));
-//        [self.messagesTableView setContentOffset:offset animated:NO];
-//    }
-//}
-
-
-//-(void)goToBottom
-//{
-//    NSIndexPath *lastIndexPath = [self lastIndexPath];
-//    [self.messagesTableView scrollToRowAtIndexPath:lastIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-//}
-//
-//-(NSIndexPath *)lastIndexPath
-//{
-//    NSInteger lastSectionIndex = MAX(0, [self.messagesTableView numberOfSections] - 1);
-//    NSInteger lastRowIndex = MAX(0, [self.messagesTableView numberOfRowsInSection:lastSectionIndex] - 1);
-//    return [NSIndexPath indexPathForRow:lastRowIndex inSection:lastSectionIndex];
-//}
-
-- (void) update:(id)sender {
+    NSLog(@"Tick...");
     [self.chatManager getAllMessagesWithUser:self.contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
         if (error) {
             NSLog(@"Error: %@", error);
             return;
         }
-
+        
         self.messages = [messages mutableCopy];
         [self updateUI];
     }];

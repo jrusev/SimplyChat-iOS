@@ -73,7 +73,6 @@
                 NSLog(@"Error: %@", error);
             } else {
                 self.accessToken = accessToken;
-                NSLog(@"access_token: %@", accessToken);
                 [self getUserProfile];
             }
         }];
