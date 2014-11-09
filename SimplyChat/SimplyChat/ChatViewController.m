@@ -107,20 +107,23 @@
                                       reuseIdentifier:@"Cell"];
     }
  
-    // subtract the row number off to get the correct array index
-    //Message *message = self.messages[self.messages.count - indexPath.row - 1];
     Message *message = self.messages[indexPath.row];
     [cell.textLabel setText:message.content];
+        
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, h:mm a"];
+    cell.detailTextLabel.text = [formatter stringFromDate:message.date];
     
     return cell;
 }
 
 - (IBAction)sendButtonPressed:(id)sender {
-    NSString *message = self.messageTextField.text;
+    NSString *message = [self.messageTextField.text copy];
     if (!message.length) {
         return;
     }
     
+    self.messageTextField.text = @"";
     [self.chatManager sendMessageWithContent:message toUser:self.contact accessToken:self.accessToken callback:^(NSError *error, Message *message) {
         if (error) {
             NSLog(@"Error: %@", error);
