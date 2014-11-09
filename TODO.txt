@@ -1,0 +1,18 @@
+UI
+
+1. Register view (+endpoint)
+2. User details view
+3. Add contacts (+search), no himself
+4. Push table from keyboard
+5. Hide keyboard on Return
+
+Data
+2. Save to CoreData
+3. UserDefaults for logged user
+4. Save current user globally
+5. Send location
+6. Swipe to get back
+7. Show error when 404 or wrong user/pass
+8. User model has contacts ?
+9. Upload to Heroku + MongoDB
+
