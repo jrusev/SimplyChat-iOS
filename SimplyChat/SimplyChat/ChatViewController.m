@@ -33,14 +33,26 @@
     return _chatManager;
 }
 
+- (NSMutableArray *)messages {
+    if (!_messages) _messages = [NSMutableArray array];
+    return _messages;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = [self.contact description];
     self.messagesTableView.dataSource = self;
-    
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.messages.count > 0) {
+        [self.messagesTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messages.count - 1 inSection:0]
+                                      atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
 }
 
 - (void)onTimerTick:(NSTimer*)timer
@@ -51,9 +63,12 @@
             NSLog(@"Error: %@", error);
             return;
         }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.messages = [messages mutableCopy];
+            [self updateUI];
+        });
         
-        self.messages = [messages mutableCopy];
-        [self updateUI];
     }];
 }
 
@@ -98,7 +113,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:@"Cell"];
     }
-    
+ 
+    // subtract the row number off to get the correct array index
+    //Message *message = self.messages[self.messages.count - indexPath.row - 1];
     Message *message = self.messages[indexPath.row];
     [cell.textLabel setText:message.content];
     
