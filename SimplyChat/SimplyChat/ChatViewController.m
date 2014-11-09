@@ -10,7 +10,7 @@
 #import "Message.h"
 #import "ChatManager.h"
 
-#define REFRESH_INTERVAL 0.5 // seconds
+#define REFRESH_INTERVAL 1.0 // seconds
 
 @interface ChatViewController ()
 
@@ -47,28 +47,21 @@
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if (self.messages.count > 0) {
-        [self.messagesTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messages.count - 1 inSection:0]
-                                      atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    }
-}
-
 - (void)onTimerTick:(NSTimer*)timer
 {
     NSLog(@"Tick...");
-    [self.chatManager getAllMessagesWithUser:self.contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
+    [self.chatManager getUnreadMessagesWithUser:self.contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
         if (error) {
             NSLog(@"Error: %@", error);
             return;
         }
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.messages = [messages mutableCopy];
-            [self updateUI];
-        });
         
+        if (messages) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.messages addObjectsFromArray:messages];
+                [self updateUI];
+            });
+        }
     }];
 }
 
@@ -133,6 +126,8 @@
             NSLog(@"Error: %@", error);
         } else {
             NSLog(@"Message sent: %@", message);
+            [self.messages addObject:message];
+            [self updateUI];
         }
     }];
 }

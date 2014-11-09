@@ -95,6 +95,23 @@ static NSString *baseUrl = @"http://localhost:1337";
     }];
 }
 
+- (void)getUnreadMessagesWithUser:(User *)user token:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *messages))callback {
+    NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", accessToken] };
+    NSString *url = [NSString stringWithFormat:@"%@%@/%@?unread=true", baseUrl, URL_MESSAGES_WITHUSER, user.username];
+    [self.requester httpGetWithURL:url headers:headers callback:^(NSError *error, NSData *data) {
+        if (error) {
+            callback(error, nil);
+        } else {
+            NSDictionary *jsonObj = [self getJson:data];
+            NSMutableArray *messages = [NSMutableArray array];
+            for (NSDictionary* data in jsonObj[@"messages"]) {
+                [messages addObject:[[Message alloc] initWithData:data]];
+            }
+            callback(nil, messages);
+        }
+    }];
+}
+
 - (void)sendMessageWithContent:(NSString *)content
              toUser:(User *)toUser
         accessToken:(NSString *)accessToken
