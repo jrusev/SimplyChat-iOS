@@ -14,6 +14,7 @@
 
 - (void)loginWithUserName:(NSString *)username password:(NSString *)password callback:(void (^)(NSError *error, NSString *accessToken))callback;
 - (void)getCurrentUserWithToken:(NSString *)accessToken callback:(void (^)(NSError *error, User *user))callback;
+- (void)getUserWithUsername:(NSString *)username token:(NSString *)accessToken callback:(void (^)(NSError *error, User *user))callback;
 - (void)getAllUsersWithToken:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *users))callback;
 - (void)getAllMessagesWithUser:(User *)user token:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *messages))callback;
 - (void)getUnreadMessagesWithUser:(User *)user token:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *messages))callback;
@@ -21,4 +22,5 @@
              toUser:(User *)toUser
         accessToken:(NSString *)accessToken
            callback:(void (^)(NSError *error, Message *message))callback;
+
 @end

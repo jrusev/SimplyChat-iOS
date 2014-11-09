@@ -11,6 +11,8 @@
 #define USER_USERNAME @"username"
 #define USER_FIRSTNAME @"firstName"
 #define USER_LASTNAME @"lastName"
+#define USER_CITY @"city"
+#define USER_IMAGEURL @"imageUrl"
 
 @implementation User
 
@@ -22,6 +24,8 @@
         self.username = data[USER_USERNAME];
         self.firstName = data[USER_FIRSTNAME];
         self.lastName = data[USER_LASTNAME];
+        self.city = data[USER_CITY];
+        self.imageUrl = data[USER_IMAGEURL];
     }
     return self;
 }

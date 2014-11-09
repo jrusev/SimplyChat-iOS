@@ -8,6 +8,7 @@
 
 #import "ContactsViewController.h"
 #import "ChatViewController.h"
+#import "DetailsViewController.h"
 #import "ChatManager.h"
 
 @interface ContactsViewController ()
@@ -45,7 +46,6 @@
     if ([segue.identifier isEqualToString:@"toChat"]) {
             
         NSIndexPath *path = sender;
-        //NSIndexPath *path = [self.contactsTableView indexPathForCell:sender];
         User *contact = self.users[path.row];
         
         ChatViewController *nextVC = segue.destinationViewController;
@@ -69,6 +69,27 @@
             }
         }];
     }
+    
+    // Segue to DetailsViewController
+    if ([segue.identifier isEqualToString:@"toDetails"]) {
+        
+        NSIndexPath *path = sender;
+        User *contact = self.users[path.row];
+        
+        DetailsViewController *nextVC = segue.destinationViewController;
+        nextVC.contact = contact;
+//        [self.chatManager getUserWithUsername:contact.username token:self.accessToken callback:^(NSError *error, User *user) {
+//            if (error) {
+//                NSLog(@"[ContactsViewController] Error: %@", [error localizedDescription]);
+//                return;
+//            }
+//            if (nextVC) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    nextVC.contact = contact;
+//                });
+//            }
+//        }];
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -76,7 +97,7 @@
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"accessoryButtonTapped");
-    [self performSegueWithIdentifier:@"toChat" sender:indexPath];
+    [self performSegueWithIdentifier:@"toDetails" sender:indexPath];
 }
 
 // When the user taps a cell in the tableView

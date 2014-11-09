@@ -10,7 +10,8 @@
 #import "HttpRequester.h"
 
 #define URL_AUTH_TOKEN @"/auth/token"
-#define URL_USERS_PROFILE @"/api/users/profile"
+#define URL_USERS_CURRENTUSER @"/api/users/currentUser"
+#define URL_USERS_BYUSERNAME @"/api/users/byUsername"
 #define URL_USERS_ALL @"/api/users"
 #define URL_MESSAGES_WITHUSER @"/api/messages/withUser"
 #define URL_MESSAGES_SEND @"/api/messages/send"
@@ -56,12 +57,33 @@ static NSString *baseUrl = @"http://localhost:1337";
 
 - (void)getCurrentUserWithToken:(NSString *)accessToken callback:(void (^)(NSError *error, User *user))callback {
     NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", accessToken] };
-    NSString *url = [baseUrl stringByAppendingString:URL_USERS_PROFILE];
+    NSString *url = [baseUrl stringByAppendingString:URL_USERS_CURRENTUSER];
     [self.requester httpGetWithURL:url headers:headers callback:^(NSError *error, NSData *data) {
         if (error) {
             callback(error, nil);
         } else {
             NSDictionary *jsonObj = [self getJson:data];
+            User *currentUser = [[User alloc] initWithData:jsonObj];
+            callback(nil, currentUser);
+        }
+    }];
+}
+
+- (void)getUserWithUsername:(NSString *)username token:(NSString *)accessToken callback:(void (^)(NSError *error, User *user))callback {
+    NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", accessToken] };
+    NSString *url = [NSString stringWithFormat:@"%@%@/%@", baseUrl, URL_USERS_BYUSERNAME, username];
+    [self.requester httpGetWithURL:url headers:headers callback:^(NSError *error, NSData *data) {
+        if (error) {
+            callback(error, nil);
+        } else {
+            NSDictionary *jsonObj = [self getJson:data];
+            
+            if (jsonObj[@"error"]) {
+                NSError *error = [self createErrorWithMessage:jsonObj[@"error"]];
+                callback(error, nil);
+                return;
+            }
+            
             User *currentUser = [[User alloc] initWithData:jsonObj];
             callback(nil, currentUser);
         }
