@@ -25,7 +25,8 @@
 
 @end
 
-static NSString *baseUrl = @"http://localhost:1337";
+//static NSString *baseUrl = @"http://localhost:1337";
+static NSString *baseUrl = @"https://simplychat.herokuapp.com";
 
 @implementation ChatManager
 

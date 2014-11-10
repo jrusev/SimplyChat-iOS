@@ -1,14 +1,25 @@
 UI
 1. Add contacts (+search) + update UserModel
-
-Data
-1. Save to CoreData
+2. Save to CoreData
 3. Upload to Heroku + MongoDB
 
 Optional
 1. UserDefaults for logged user
-2. Save current user/token globally
-3. UITableView separator line disappears
-4. Change textfield to many rows
-//5. Auto Layout
+2. UITableView separator line disappears
+3. Change textfield to many rows
+//4. Auto Layout
+
+Refactoring
+1. Save current user/token globally
+
+{
+    "port" : 1337,
+    "security": {
+        "tokenLife" : 3600
+    },
+    "mongoose": {
+        "uri": "mongodb://localhost/testAPI",
+    }
+}
+
 
