@@ -83,7 +83,7 @@
 
 - (void)onTimerTick:(NSTimer*)timer
 {
-    NSLog(@"Tick...");
+    NSLog(@"Tick...%lu", (unsigned long)self.messagesTableView.visibleCells.count);
     [self.chatManager getUnreadMessagesWithUser:self.contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
         if (error) {
             NSLog(@"[ChatViewController] Error: %@", [error localizedDescription]);
@@ -124,8 +124,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:@"Cell"];
     }
+  
+    NSInteger row = indexPath.row;
  
-    Message *message = self.messages[indexPath.row];
+    Message *message = self.messages[row];
     [cell.textLabel setText:message.content];
         
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -187,8 +189,10 @@
             NSLog(@"[ChatViewController] Error: %@", [error localizedDescription]);
         } else {
             NSLog(@"Message sent: %@", message);
-            [self.messages addObject:message];
-            [self updateUI];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.messages addObject:message];
+                [self updateUI];
+            });
         }
     }];
 }
