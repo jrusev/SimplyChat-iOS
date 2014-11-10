@@ -1,7 +1,6 @@
 UI
 1. Add contacts (+search) + update UserModel
 2. Save to CoreData
-3. Upload to Heroku + MongoDB
 
 Optional
 1. UserDefaults for logged user
@@ -12,14 +11,5 @@ Optional
 Refactoring
 1. Save current user/token globally
 
-{
-    "port" : 1337,
-    "security": {
-        "tokenLife" : 3600
-    },
-    "mongoose": {
-        "uri": "mongodb://localhost/testAPI",
-    }
-}
 
 
