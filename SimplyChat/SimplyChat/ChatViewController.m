@@ -121,7 +121,7 @@
 
 - (void)onTimerTick:(NSTimer*)timer
 {
-    NSLog(@"Tick...");
+    //NSLog(@"Tick...");
     [self.chatManager getUnreadMessagesWithUser:self.contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
         if (error) {
             NSLog(@"[ChatViewController] Error: %@", [error localizedDescription]);

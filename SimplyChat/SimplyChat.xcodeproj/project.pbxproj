@@ -15,6 +15,7 @@
 		2B42B4C51A10082D00BA1194 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4C41A10082D00BA1194 /* DetailsViewController.m */; };
 		2B42B4C81A10267A00BA1194 /* UIImage+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4C71A10267A00BA1194 /* UIImage+Helpers.m */; };
 		2B42B4CB1A10332100BA1194 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4CA1A10332100BA1194 /* RegisterViewController.m */; };
+		2B42B4CE1A111A9100BA1194 /* AddContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4CD1A111A9100BA1194 /* AddContactsViewController.m */; };
 		2B77351E1A0D5D750012DFD1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B77351D1A0D5D750012DFD1 /* main.m */; };
 		2B7735211A0D5D750012DFD1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7735201A0D5D750012DFD1 /* AppDelegate.m */; };
 		2B7735271A0D5D750012DFD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7735251A0D5D750012DFD1 /* Main.storyboard */; };
@@ -53,6 +54,8 @@
 		2B42B4C71A10267A00BA1194 /* UIImage+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Helpers.m"; sourceTree = "<group>"; };
 		2B42B4C91A10332100BA1194 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		2B42B4CA1A10332100BA1194 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		2B42B4CC1A111A9100BA1194 /* AddContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactsViewController.h; sourceTree = "<group>"; };
+		2B42B4CD1A111A9100BA1194 /* AddContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactsViewController.m; sourceTree = "<group>"; };
 		2B7735181A0D5D750012DFD1 /* SimplyChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplyChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B77351C1A0D5D750012DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B77351D1A0D5D750012DFD1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 				2B42B4CA1A10332100BA1194 /* RegisterViewController.m */,
 				2B42B4BD1A0E2BCF00BA1194 /* ChatManager.h */,
 				2B42B4BE1A0E2BCF00BA1194 /* ChatManager.m */,
+				2B42B4CC1A111A9100BA1194 /* AddContactsViewController.h */,
+				2B42B4CD1A111A9100BA1194 /* AddContactsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 				2B42B4B81A0DA11300BA1194 /* ChatViewController.m in Sources */,
 				2B42B4CB1A10332100BA1194 /* RegisterViewController.m in Sources */,
 				2B42B4C21A0E4AB200BA1194 /* Message.m in Sources */,
+				2B42B4CE1A111A9100BA1194 /* AddContactsViewController.m in Sources */,
 				2B7735431A0D5DE10012DFD1 /* LoginViewController.m in Sources */,
 				2B42B4BF1A0E2BCF00BA1194 /* ChatManager.m in Sources */,
 			);

@@ -382,6 +382,43 @@
             </objects>
             <point key="canvasLocation" x="2201.25" y="1055.5"/>
         </scene>
+        <!--Add Contact-->
+        <scene sceneID="vxk-SW-bnL">
+            <objects>
+                <viewController title="Add Contact" id="X5D-Bt-rEe" customClass="AddContactsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0rj-0b-dhc"/>
+                        <viewControllerLayoutGuide type="bottom" id="yGI-yv-iMY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QC9-uq-KiQ">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for people" translatesAutoresizingMaskIntoConstraints="NO" id="UGO-TP-pyc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="72" width="343" height="44"/>
+                                </variation>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="UGO-TP-pyc"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="UGO-TP-pyc"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TYH-eI-Eft" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2867.25" y="1055.5"/>
+        </scene>
         <!--Contacts-->
         <scene sceneID="hVt-Si-GIO">
             <objects>
@@ -428,6 +465,7 @@
                         <outlet property="contactsTableView" destination="mjj-rB-97e" id="6dy-fF-IQn"/>
                         <segue destination="bPr-Mm-G2z" kind="show" identifier="toChat" id="zgc-Ze-Whu"/>
                         <segue destination="tcY-y4-4Of" kind="show" identifier="toDetails" id="0aI-8n-Nit"/>
+                        <segue destination="X5D-Bt-rEe" kind="show" identifier="toAddContacts" id="nVZ-9Q-XX3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHL-px-Ibv" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -35,10 +35,22 @@
     UISwipeGestureRecognizer * recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onRightSwipe)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     [self.view addGestureRecognizer:recognizer];
+    
+    // Nav bar buttons
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
+                                     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                     target:self
+                                     action:@selector(addButtonPressed:)];
+    
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:addButton, nil];
 }
 
 - (void)onRightSwipe {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)addButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"toAddContacts" sender:self];
 }
 
 #pragma mark - Navigation
