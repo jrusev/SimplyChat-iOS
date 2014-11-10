@@ -50,8 +50,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     // This will change the title on the next VC 'Back' button
+    NSString *backButtonTitle = [segue.identifier isEqualToString:@"toContacts"] ? @"Log Out" : @"Log In";
     self.navigationItem.backBarButtonItem =
-    [[UIBarButtonItem alloc] initWithTitle:@"Log In"
+    [[UIBarButtonItem alloc] initWithTitle:backButtonTitle
                                      style:UIBarButtonItemStylePlain
                                     target:nil
                                     action:nil];
