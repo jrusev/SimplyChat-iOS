@@ -70,22 +70,26 @@
 
     if(!username.length) {
         [Notifier showAlert:@"Error" message:@"Username cannot be empty!" andBtn:@"OK"];
+        return;
     }
-    else if(!password.length) {
+    
+    if(!password.length) {
         [Notifier showAlert:@"Error" message:@"Password cannot be empty!" andBtn:@"OK"];
-    } else {
-        [self.chatManager loginWithUserName:username password:password callback:^(NSError *error, NSString *accessToken) {
-            if (error) {
-                NSLog(@"[LoginViewController] Error: %@", [error localizedDescription]);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [Notifier showAlert:@"Error" message:@"Username or password did not match!" andBtn:@"OK"];
-                });
-            } else {
-                self.accessToken = accessToken;
-                [self getUserProfile];
-            }
-        }];
+        return;
     }
+
+    [self.view endEditing:YES];
+    [self.chatManager loginWithUserName:username password:password callback:^(NSError *error, NSString *accessToken) {
+        if (error) {
+            NSLog(@"[LoginViewController] Error: %@", [error localizedDescription]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [Notifier showAlert:@"Error" message:@"Username or password did not match!" andBtn:@"OK"];
+            });
+        } else {
+            self.accessToken = accessToken;
+            [self getUserProfile];
+        }
+    }];
 }
 
 - (IBAction)registerButtonPressed:(id)sender {

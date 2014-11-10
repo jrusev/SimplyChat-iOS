@@ -1,6 +1,7 @@
 UI
 1. Add contacts (+search), no himself
 2. User model has contacts ?
+3. first chat does not show
 
 Data
 1. Send location
