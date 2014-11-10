@@ -1,14 +1,15 @@
 UI
-
-1. Register view (+endpoint)
-3. Add contacts (+search), no himself
+1. Add contacts (+search), no himself
+2. User model has contacts ?
 
 Data
+1. Send location
 2. Save to CoreData
-3. UserDefaults for logged user
-4. Save current user globally
-5. Send location
-6. Swipe to get back
-8. User model has contacts ?
-9. Upload to Heroku + MongoDB
+3. Swipe to get back
+4. Upload to Heroku + MongoDB
+
+Optional
+1. UserDefaults for logged user
+2. Save current user/token globally
+3. UITableView separator line disappears
 

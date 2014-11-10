@@ -68,8 +68,9 @@
     if(!password.length) {
         [Notifier showAlert:@"Error" message:@"Password cannot be empty!" andBtn:@"OK"];
         return;
-    }    
+    }
     
+    [self.view endEditing:YES];
     [self.chatManager registerWithUserName:username
                                   password:password
                                  firstName:firstName
@@ -85,7 +86,7 @@
         } else {
             NSLog(@"[RegisterViewController] User registered: %@", user);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [Notifier showAlert:@"Success" message:@"You have made a successful registration!" andBtn:@"OK"];
+                [Notifier showAlert:@"Success" message:@"You have made a successful registration!" andBtn:@"OK"];                
             });
         }
   }];
