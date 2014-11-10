@@ -9,6 +9,7 @@
 #import "ChatViewController.h"
 #import "Message.h"
 #import "ChatManager.h"
+#import "Notifier.h"
 
 #define REFRESH_INTERVAL 1.0 // seconds
 
@@ -289,6 +290,7 @@
 #pragma mark - CLLocationManagerDelegate
 
 - (IBAction)locationButtonPressed:(id)sender {
+    //[Notifier showAlert:@"Location" message:@"Your location is being sent!" andBtn:@"OK"];
     [self.locationManager startUpdatingLocation];
     NSLog(@"startUpdatingLocation");
 }

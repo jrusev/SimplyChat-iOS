@@ -3,11 +3,10 @@ UI
 3. Auto Layout
 
 Data
-1. Send location
-2. Save to CoreData
-3. Swipe to get back
-4. Upload to Heroku + MongoDB
-5. Send photo message
+1. Save to CoreData
+2. Swipe to get back
+3. Upload to Heroku + MongoDB
+4. Send photo message
 
 Optional
 1. UserDefaults for logged user
