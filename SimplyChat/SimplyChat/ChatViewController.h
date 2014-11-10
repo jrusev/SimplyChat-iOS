@@ -23,6 +23,7 @@
 
 -(IBAction)sendButtonPressed:(id)sender;
 -(IBAction) textFieldDoneEditing:(id) sender;
+- (IBAction)locationButtonPressed:(id)sender;
 
 -(void) registerForKeyboardNotifications;
 -(void) freeKeyboardNotifications;

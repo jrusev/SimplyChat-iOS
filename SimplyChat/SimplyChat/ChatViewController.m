@@ -68,7 +68,7 @@
         if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             [self.locationManager requestWhenInUseAuthorization];
         }
-        [self.locationManager startUpdatingLocation];
+        //[self.locationManager startUpdatingLocation];
     } else {
         NSLog(@"[ChatViewController] Location services not enabled!");
     }
@@ -159,7 +159,7 @@
    
     // Content
     UILabel *lbl1 = [[UILabel alloc]initWithFrame:CGRectMake(16, 5, 240, 30)];
-    [lbl1 setFont:[UIFont fontWithName:@"Helvetica Neue" size:18.0]];
+    [lbl1 setFont:[UIFont fontWithName:@"Helvetica Neue" size:16.0]];
     [lbl1 setTextColor:[UIColor blackColor]];
     lbl1.text = message.content;
     [cell addSubview:lbl1];
@@ -288,16 +288,36 @@
 
 #pragma mark - CLLocationManagerDelegate
 
+- (IBAction)locationButtonPressed:(id)sender {
+    [self.locationManager startUpdatingLocation];
+    NSLog(@"startUpdatingLocation");
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     self.location = [locations lastObject];
-    NSLog(@"Lat :%0.4f Lon: %.4f", self.location.coordinate.latitude, self.location.coordinate.longitude);
+    [self.locationManager stopUpdatingLocation];
+    NSLog(@"stopUpdatingLocation");
+    
+    NSString *locationMessage = [NSString stringWithFormat:@"Lat :%0.4f Lon: %.4f",
+                                 self.location.coordinate.latitude, self.location.coordinate.longitude ];
+    
+    NSLog(@"%@", locationMessage );
+    [self.chatManager sendMessageWithContent:locationMessage toUser:self.contact accessToken:self.accessToken callback:^(NSError *error, Message *message) {
+        if (error) {
+            NSLog(@"[ChatViewController] Error: %@", [error localizedDescription]);
+        } else {
+            NSLog(@"Message sent: %@", message);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.messages addObject:message];
+                [self updateUI];
+            });
+        }
+    }];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"LocationManager failed with error: %@", [error localizedDescription]);
-    
-    // Stop Location Manager
     [self.locationManager stopUpdatingLocation];
 }
 

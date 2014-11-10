@@ -501,6 +501,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="Txa-6U-BHY">
+                        <barButtonItem key="rightBarButtonItem" image="Maps-Location-icon" id="SAj-Df-tiF">
+                            <connections>
+                                <action selector="locationButtonPressed:" destination="bPr-Mm-G2z" id="6bh-Vk-cLa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="messageTextField" destination="s2p-Tj-PiD" id="ndC-R3-IEj"/>
@@ -535,4 +542,7 @@
             <point key="canvasLocation" x="834.75" y="309.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Maps-Location-icon" width="32" height="32"/>
+    </resources>
 </document>

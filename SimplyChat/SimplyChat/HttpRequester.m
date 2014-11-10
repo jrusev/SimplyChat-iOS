@@ -56,7 +56,7 @@
                                        queue:queue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                NSInteger code = [(NSHTTPURLResponse*)response statusCode];
-                               NSLog(@"[HttpRequester] Status code: %ld", code);
+                               //NSLog(@"[HttpRequester] Status code: %ld", code);
                                callback(error, data);
                            }];
 }
