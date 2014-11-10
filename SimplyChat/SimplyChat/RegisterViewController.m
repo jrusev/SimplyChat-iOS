@@ -94,7 +94,8 @@
         } else {
             NSLog(@"[RegisterViewController] User registered: %@", user);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [Notifier showAlert:@"Success" message:@"You have made a successful registration!" andBtn:@"OK"];                
+                [Notifier showAlert:@"Success" message:@"You have made a successful registration!" andBtn:@"OK"];
+                [self.delegate setUsername:username andPassword:password];
             });
         }
   }];

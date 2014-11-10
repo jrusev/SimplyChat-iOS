@@ -63,6 +63,11 @@
         nextVC.accessToken = self.accessToken;
         nextVC.currentUser = self.currentUser;
     }
+    
+    if ([segue.identifier isEqualToString:@"toRegister"]) {
+        RegisterViewController *nextVC = segue.destinationViewController;
+        nextVC.delegate = self;
+    }
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
@@ -133,6 +138,14 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self performSegueWithIdentifier:@"toContacts" sender:self];
     });
+}
+
+#pragma mark - RegisterViewControllerDelegate
+
+- (void)setUsername:(NSString *)username andPassword:(NSString *)password {
+    self.usernameTextField.text = username;
+    self.passwordTextField.text = password;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

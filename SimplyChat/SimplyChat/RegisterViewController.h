@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RegisterViewControllerDelegate <NSObject>
+
+- (void)setUsername:(NSString *)username andPassword:(NSString *)password;
+
+@end
+
 @interface RegisterViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
@@ -17,6 +23,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+
+@property (weak,nonatomic) id<RegisterViewControllerDelegate> delegate;
 - (IBAction)registerButtonPressed:(id)sender;
 
 @end

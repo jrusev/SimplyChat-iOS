@@ -60,7 +60,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="registerButtonPressed:" destination="Nfg-X2-wKX" eventType="touchUpInside" id="7FK-e0-2v7"/>
-                                    <segue destination="Ji4-PN-nRE" kind="show" id="4mW-4A-8bn"/>
+                                    <segue destination="Ji4-PN-nRE" kind="show" identifier="toRegister" id="4mW-4A-8bn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izf-d9-a6X">

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RegisterViewController.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController<RegisterViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
