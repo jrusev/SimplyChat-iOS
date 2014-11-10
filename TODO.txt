@@ -1,10 +1,8 @@
 UI
 1. Add contacts (+search) + update UserModel
-3. Auto Layout
 
 Data
 1. Save to CoreData
-2. Send photo message
 3. Upload to Heroku + MongoDB
 
 Optional
@@ -12,4 +10,5 @@ Optional
 2. Save current user/token globally
 3. UITableView separator line disappears
 4. Change textfield to many rows
+//5. Auto Layout
 

@@ -20,6 +20,7 @@
 @property (nonatomic) BOOL firstLoad;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) UIImagePickerController *picker;
 
 - (void)onTimerTick:(NSTimer*)timer;
 
@@ -78,6 +79,34 @@
     UISwipeGestureRecognizer * recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onRightSwipe)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     [self.view addGestureRecognizer:recognizer];
+    
+    // Nav bar buttons
+    UIBarButtonItem *locationButton = [[UIBarButtonItem alloc]
+                                       initWithImage:[UIImage imageNamed:@"Maps-Location-icon.png"]
+                                       style:UIBarButtonItemStylePlain
+                                       target:self
+                                       action:@selector(locationButtonPressed:)];
+    
+    UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc]
+                                     initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
+                                     target:self
+                                     action:@selector(cameraButtonPressed:)];
+    
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:locationButton, cameraButton, nil];
+}
+
+- (void)cameraButtonPressed:(id)sender {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        self.picker = [[UIImagePickerController alloc] init];
+        self.picker.allowsEditing = NO;
+        [self.picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [self presentViewController:self.picker animated:NO completion:^{
+            NSLog(@"UIImagePickerController");
+        }];
+    } else {
+        [Notifier showAlert:@"Error" message:@"Camera not found on the device!" andBtn:@"OK"];
+    }
 }
 
 - (void)onRightSwipe {
