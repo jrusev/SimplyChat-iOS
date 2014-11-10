@@ -17,6 +17,7 @@
 @property (strong, nonatomic) ChatManager *chatManager;
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) BOOL firstLoad;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 - (void)onTimerTick:(NSTimer*)timer;
 
@@ -55,6 +56,21 @@
     self.firstLoad = YES;
     [self registerForKeyboardNotifications];
     self.messageTextField.delegate = self;
+    
+    // Location manager
+    if ([CLLocationManager locationServicesEnabled]) {
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+        [self.locationManager startUpdatingLocation];
+    } else {
+        NSLog(@"[ChatViewController] Location services not enabled!");
+    }
 }
 
 - (void)updateUI {
@@ -267,6 +283,18 @@
     [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + keyboardFrame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
     [self.messagesTableView setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
     [UIView commitAnimations];
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = [locations lastObject];
+    NSLog(@"Lat :%0.4f Lon: %.4f", location.coordinate.latitude, location.coordinate.longitude);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"LocationManager failed with error: %@", [error localizedDescription]);
 }
 
 @end

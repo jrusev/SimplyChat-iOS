@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface ChatViewController : UIViewController<UITableViewDataSource, UITextFieldDelegate>
+@interface ChatViewController : UIViewController<UITableViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate>
 
 - (void)updateUI;
 
