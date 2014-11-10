@@ -23,4 +23,12 @@
         accessToken:(NSString *)accessToken
            callback:(void (^)(NSError *error, Message *message))callback;
 
+- (void)registerWithUserName:(NSString *)username
+                    password:(NSString *)password
+                   firstName:(NSString *)firstName
+                    lastName:(NSString *)lastName
+                    location:(NSString *)location
+                    imageUrl:(NSString*)imageUrl
+                    callback:(void (^)(NSError *error, User *user))callback;
+
 @end

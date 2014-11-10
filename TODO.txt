@@ -1,7 +1,6 @@
 UI
 
 1. Register view (+endpoint)
-2. User details view
 3. Add contacts (+search), no himself
 
 Data

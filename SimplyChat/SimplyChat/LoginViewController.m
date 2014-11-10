@@ -36,22 +36,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     id user = nil;
     if(user){
         [self segueToContacts];
     }
+    
+    self.passwordTextField.secureTextEntry = YES;
 }
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    // This will change the title on the next VC 'Back' button
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@"Log In"
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    
     if ([segue.identifier isEqualToString:@"toContacts"]) {
-        // This will change the title on the next VC 'Back' button
-        self.navigationItem.backBarButtonItem =
-        [[UIBarButtonItem alloc] initWithTitle:@"Log Out"
-                                         style:UIBarButtonItemStylePlain
-                                        target:nil
-                                        action:nil];
         ContactsViewController *nextVC = segue.destinationViewController;
         nextVC.users = [self.users mutableCopy];
         nextVC.accessToken = self.accessToken;
@@ -81,6 +86,10 @@
             }
         }];
     }
+}
+
+- (IBAction)registerButtonPressed:(id)sender {
+    
 }
 
 #pragma mark - private methods

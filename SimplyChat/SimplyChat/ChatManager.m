@@ -13,8 +13,11 @@
 #define URL_USERS_CURRENTUSER @"/api/users/currentUser"
 #define URL_USERS_BYUSERNAME @"/api/users/byUsername"
 #define URL_USERS_ALL @"/api/users"
+#define URL_USERS_REGISTER @"/api/users/register"
+
 #define URL_MESSAGES_WITHUSER @"/api/messages/withUser"
 #define URL_MESSAGES_SEND @"/api/messages/send"
+
 
 @interface ChatManager ()
 
@@ -51,6 +54,36 @@ static NSString *baseUrl = @"http://localhost:1337";
             
             NSString *accessToken = jsonObj[@"access_token"];
             callback(nil, accessToken);
+        }
+    }];
+}
+
+- (void)registerWithUserName:(NSString *)username
+                    password:(NSString *)password
+                   firstName:(NSString *)firstName
+                    lastName:(NSString *)lastName
+                    location:(NSString *)location
+                    imageUrl:(NSString*)imageUrl
+                    callback:(void (^)(NSError *error, User *user))callback {
+    
+    NSString *content = [NSString stringWithFormat:@"&username=%@&password=%@&firstName=%@&lastName=%@&location=%@&imageUrl=%@",
+                         username, password, firstName, lastName, location,imageUrl];
+    
+    NSString *url = [baseUrl stringByAppendingString:URL_USERS_REGISTER];
+    [self.requester httpPostWithURL:url headers:nil content:content callback:^(NSError *error, NSData *data) {
+        if (error) {
+            callback(error, nil);
+        } else {
+            NSDictionary *jsonObj = [self getJson:data];
+            
+            if (jsonObj[@"error"]) {
+                NSError *error = [self createErrorWithMessage:jsonObj[@"error"]];
+                callback(error, nil);
+                return;
+            }
+            
+            User *registeredUser = [[User alloc] initWithData:jsonObj];
+            callback(nil, registeredUser);
         }
     }];
 }

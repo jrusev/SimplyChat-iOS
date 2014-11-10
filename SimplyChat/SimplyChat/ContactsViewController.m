@@ -96,14 +96,12 @@
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"accessoryButtonTapped");
     [self performSegueWithIdentifier:@"toDetails" sender:indexPath];
 }
 
 // When the user taps a cell in the tableView
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"didSelectRow");
     [self performSegueWithIdentifier:@"toChat" sender:indexPath];
 }
 
