@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) BOOL firstLoad;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *location;
 
 - (void)onTimerTick:(NSTimer*)timer;
 
@@ -99,7 +100,7 @@
 
 - (void)onTimerTick:(NSTimer*)timer
 {
-    NSLog(@"Tick...%lu", (unsigned long)self.messagesTableView.visibleCells.count);
+    NSLog(@"Tick...");
     [self.chatManager getUnreadMessagesWithUser:self.contact token:self.accessToken callback:^(NSError *error, NSArray *messages) {
         if (error) {
             NSLog(@"[ChatViewController] Error: %@", [error localizedDescription]);
@@ -288,13 +289,16 @@
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation *location = [locations lastObject];
-    NSLog(@"Lat :%0.4f Lon: %.4f", location.coordinate.latitude, location.coordinate.longitude);
+    self.location = [locations lastObject];
+    NSLog(@"Lat :%0.4f Lon: %.4f", self.location.coordinate.latitude, self.location.coordinate.longitude);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"LocationManager failed with error: %@", [error localizedDescription]);
+    
+    // Stop Location Manager
+    [self.locationManager stopUpdatingLocation];
 }
 
 @end
