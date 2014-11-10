@@ -73,6 +73,15 @@
     } else {
         NSLog(@"[ChatViewController] Location services not enabled!");
     }
+    
+    // Handle right swipe gesture
+    UISwipeGestureRecognizer * recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onRightSwipe)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.view addGestureRecognizer:recognizer];
+}
+
+- (void)onRightSwipe {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)updateUI {
@@ -117,16 +126,6 @@
         }
     }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - UITableViewDataSource
 

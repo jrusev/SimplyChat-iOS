@@ -27,8 +27,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.passwordTextField.secureTextEntry = YES;
+    
+    // Handle right swipe gesture
+    UISwipeGestureRecognizer * recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onRightSwipe)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.view addGestureRecognizer:recognizer];
 }
 
+- (void)onRightSwipe {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 /*
 #pragma mark - Navigation

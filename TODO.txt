@@ -4,7 +4,6 @@ UI
 
 Data
 1. Save to CoreData
-2. Swipe to get back
 3. Upload to Heroku + MongoDB
 4. Send photo message
 

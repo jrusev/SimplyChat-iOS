@@ -30,11 +30,15 @@
     //self.navigationItem.hidesBackButton = YES;
     self.contactsTableView.dataSource = self;
     self.contactsTableView.delegate = self;
+    
+    // Handle right swipe gesture
+    UISwipeGestureRecognizer * recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onRightSwipe)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.view addGestureRecognizer:recognizer];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)onRightSwipe {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Navigation
@@ -78,17 +82,6 @@
         
         DetailsViewController *nextVC = segue.destinationViewController;
         nextVC.contact = contact;
-//        [self.chatManager getUserWithUsername:contact.username token:self.accessToken callback:^(NSError *error, User *user) {
-//            if (error) {
-//                NSLog(@"[ContactsViewController] Error: %@", [error localizedDescription]);
-//                return;
-//            }
-//            if (nextVC) {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    nextVC.contact = contact;
-//                });
-//            }
-//        }];
     }
 }
 
