@@ -95,24 +95,6 @@
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:locationButton, cameraButton, nil];
 }
 
-- (void)cameraButtonPressed:(id)sender {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        self.picker = [[UIImagePickerController alloc] init];
-        self.picker.allowsEditing = NO;
-        [self.picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-        [self presentViewController:self.picker animated:NO completion:^{
-            NSLog(@"UIImagePickerController");
-        }];
-    } else {
-        [Notifier showAlert:@"Error" message:@"Camera not found on the device!" andBtn:@"OK"];
-    }
-}
-
-- (void)onRightSwipe {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)updateUI {
     [self.messagesTableView reloadData];
     if (self.messagesTableView.contentSize.height > self.messagesTableView.frame.size.height)
@@ -249,6 +231,28 @@
     return NO;
 }
 
+#pragma mark - Camera
+
+- (void)cameraButtonPressed:(id)sender {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        self.picker = [[UIImagePickerController alloc] init];
+        self.picker.allowsEditing = NO;
+        [self.picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [self presentViewController:self.picker animated:NO completion:^{
+            NSLog(@"UIImagePickerController");
+        }];
+    } else {
+        [Notifier showAlert:@"Error" message:@"Camera not found on the device!" andBtn:@"OK"];
+    }
+}
+
+#pragma mark - Gestures
+
+- (void)onRightSwipe {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - show/hide the keyboard
 
 - (IBAction)textFieldDoneEditing:(id)sender
@@ -262,7 +266,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
-
 
 - (void)freeKeyboardNotifications
 {
@@ -317,7 +320,7 @@
 
 #pragma mark - CLLocationManagerDelegate
 
-- (IBAction)locationButtonPressed:(id)sender {
+- (void)locationButtonPressed:(id)sender {
     //[Notifier showAlert:@"Location" message:@"Your location is being sent!" andBtn:@"OK"];
     [self.locationManager startUpdatingLocation];
     NSLog(@"startUpdatingLocation");
