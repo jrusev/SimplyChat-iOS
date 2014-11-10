@@ -114,7 +114,7 @@
 
 - (void)getAllUsers {
   
-    [self.chatManager getAllUsersWithToken:self.accessToken callback:^(NSError *error, NSArray *users) {
+    [self.chatManager getContactsWithToken:self.accessToken callback:^(NSError *error, NSArray *users) {
         if (error) {
             NSLog(@"[LoginViewController] Error: %@", [error localizedDescription]);
         } else {

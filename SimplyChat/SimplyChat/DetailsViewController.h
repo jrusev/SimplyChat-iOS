@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *locationTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
+@property (weak, nonatomic) IBOutlet UILabel *genderLabel;
 
 @end

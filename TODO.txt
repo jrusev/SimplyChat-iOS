@@ -1,16 +1,18 @@
 UI
-1. Add contacts (+search), no himself
-2. User model has contacts ?
-3. first chat does not show
+1. Add contacts (+search) + update UserModel
+2. first chat does not show
+3. Auto Layout
+4. location: null 
 
 Data
 1. Send location
 2. Save to CoreData
 3. Swipe to get back
 4. Upload to Heroku + MongoDB
+5. Send photo message
 
 Optional
 1. UserDefaults for logged user
 2. Save current user/token globally
 3. UITableView separator line disappears
-
+4. Change textfield to many rows

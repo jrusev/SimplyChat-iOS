@@ -370,6 +370,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="genderLabel" destination="QL3-3l-9a9" id="5gq-rj-Bdi"/>
                         <outlet property="locationTextField" destination="Bi7-nt-Qe8" id="JnE-wB-dcG"/>
                         <outlet property="nameTextField" destination="J3Q-cO-Bgc" id="X4o-i3-6DS"/>
                         <outlet property="photoImageView" destination="ZaS-lr-dRT" id="fMV-O6-WE4"/>

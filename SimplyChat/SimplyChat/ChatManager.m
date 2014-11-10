@@ -12,7 +12,7 @@
 #define URL_AUTH_TOKEN @"/auth/token"
 #define URL_USERS_CURRENTUSER @"/api/users/currentUser"
 #define URL_USERS_BYUSERNAME @"/api/users/byUsername"
-#define URL_USERS_ALL @"/api/users"
+#define URL_USERS_CONTACTS @"/api/users/contacts"
 #define URL_USERS_REGISTER @"/api/users/register"
 
 #define URL_MESSAGES_WITHUSER @"/api/messages/withUser"
@@ -123,9 +123,9 @@ static NSString *baseUrl = @"http://localhost:1337";
     }];
 }
 
-- (void)getAllUsersWithToken:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *users))callback {
+- (void)getContactsWithToken:(NSString *)accessToken callback:(void (^)(NSError *error, NSArray *users))callback {
     NSDictionary *headers = @{ @"Authorization": [NSString stringWithFormat:@"Bearer %@", accessToken] };
-    NSString *url = [baseUrl stringByAppendingString:URL_USERS_ALL];
+    NSString *url = [baseUrl stringByAppendingString:URL_USERS_CONTACTS];
     [self.requester httpGetWithURL:url headers:headers callback:^(NSError *error, NSData *data) {
         if (error) {
             callback(error, nil);

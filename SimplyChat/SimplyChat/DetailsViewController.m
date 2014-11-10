@@ -20,7 +20,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.nameTextField.text = [self.contact description];
-    self.locationTextField.text = [NSString stringWithFormat:@"Location: %@", self.contact.city];
+    self.locationTextField.text = [NSString stringWithFormat:@"Location: %@", self.contact.city ? self.contact.city : @"n.a."];
+    self.genderLabel.text = [NSString stringWithFormat:@"Gender: %@", @"n.a."];
     
     // Load image async
     if (self.contact.imageUrl.length) {
