@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B42B4B31A0D7ADD00BA1194 /* Notifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4B21A0D7ADD00BA1194 /* Notifier.m */; };
+		2B42B4B81A0DA11300BA1194 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4B71A0DA11300BA1194 /* ChatViewController.m */; };
+		2B42B4BB1A0DA5AF00BA1194 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4BA1A0DA5AF00BA1194 /* User.m */; };
+		2B42B4BF1A0E2BCF00BA1194 /* ChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4BE1A0E2BCF00BA1194 /* ChatManager.m */; };
+		2B42B4C21A0E4AB200BA1194 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4C11A0E4AB200BA1194 /* Message.m */; };
+		2B42B4C51A10082D00BA1194 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4C41A10082D00BA1194 /* DetailsViewController.m */; };
+		2B42B4C81A10267A00BA1194 /* UIImage+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4C71A10267A00BA1194 /* UIImage+Helpers.m */; };
+		2B42B4CB1A10332100BA1194 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4CA1A10332100BA1194 /* RegisterViewController.m */; };
+		2B42B4CE1A111A9100BA1194 /* AddContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B42B4CD1A111A9100BA1194 /* AddContactsViewController.m */; };
+		2B77351E1A0D5D750012DFD1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B77351D1A0D5D750012DFD1 /* main.m */; };
+		2B7735211A0D5D750012DFD1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7735201A0D5D750012DFD1 /* AppDelegate.m */; };
+		2B7735271A0D5D750012DFD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7735251A0D5D750012DFD1 /* Main.storyboard */; };
+		2B7735291A0D5D750012DFD1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7735281A0D5D750012DFD1 /* Images.xcassets */; };
+		2B77352C1A0D5D750012DFD1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B77352A1A0D5D750012DFD1 /* LaunchScreen.xib */; };
+		2B7735381A0D5D750012DFD1 /* SimplyChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7735371A0D5D750012DFD1 /* SimplyChatTests.m */; };
+		2B7735431A0D5DE10012DFD1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7735421A0D5DE10012DFD1 /* LoginViewController.m */; };
+		2B7735461A0D733A0012DFD1 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7735451A0D733A0012DFD1 /* ContactsViewController.m */; };
+		2B77354C1A0D75650012DFD1 /* HttpRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B77354A1A0D75650012DFD1 /* HttpRequester.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2B7735321A0D5D750012DFD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B7735101A0D5D750012DFD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B7735171A0D5D750012DFD1;
+			remoteInfo = SimplyChat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2B42B4B11A0D7ADD00BA1194 /* Notifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifier.h; sourceTree = "<group>"; };
+		2B42B4B21A0D7ADD00BA1194 /* Notifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notifier.m; sourceTree = "<group>"; };
+		2B42B4B61A0DA11300BA1194 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		2B42B4B71A0DA11300BA1194 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		2B42B4B91A0DA5AF00BA1194 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		2B42B4BA1A0DA5AF00BA1194 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		2B42B4BD1A0E2BCF00BA1194 /* ChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatManager.h; sourceTree = "<group>"; };
+		2B42B4BE1A0E2BCF00BA1194 /* ChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatManager.m; sourceTree = "<group>"; };
+		2B42B4C01A0E4AB200BA1194 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		2B42B4C11A0E4AB200BA1194 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		2B42B4C31A10082D00BA1194 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		2B42B4C41A10082D00BA1194 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		2B42B4C61A10267A00BA1194 /* UIImage+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helpers.h"; sourceTree = "<group>"; };
+		2B42B4C71A10267A00BA1194 /* UIImage+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Helpers.m"; sourceTree = "<group>"; };
+		2B42B4C91A10332100BA1194 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		2B42B4CA1A10332100BA1194 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		2B42B4CC1A111A9100BA1194 /* AddContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactsViewController.h; sourceTree = "<group>"; };
+		2B42B4CD1A111A9100BA1194 /* AddContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactsViewController.m; sourceTree = "<group>"; };
+		2B7735181A0D5D750012DFD1 /* SimplyChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplyChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B77351C1A0D5D750012DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B77351D1A0D5D750012DFD1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2B77351F1A0D5D750012DFD1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2B7735201A0D5D750012DFD1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2B7735261A0D5D750012DFD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2B7735281A0D5D750012DFD1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2B77352B1A0D5D750012DFD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		2B7735311A0D5D750012DFD1 /* SimplyChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimplyChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B7735361A0D5D750012DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B7735371A0D5D750012DFD1 /* SimplyChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplyChatTests.m; sourceTree = "<group>"; };
+		2B7735411A0D5DE10012DFD1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		2B7735421A0D5DE10012DFD1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		2B7735441A0D733A0012DFD1 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		2B7735451A0D733A0012DFD1 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		2B7735491A0D75650012DFD1 /* HttpRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequester.h; sourceTree = "<group>"; };
+		2B77354A1A0D75650012DFD1 /* HttpRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequester.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B7735151A0D5D750012DFD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B77352E1A0D5D750012DFD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B42B4B41A0D7B3900BA1194 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2B7735411A0D5DE10012DFD1 /* LoginViewController.h */,
+				2B7735421A0D5DE10012DFD1 /* LoginViewController.m */,
+				2B7735441A0D733A0012DFD1 /* ContactsViewController.h */,
+				2B7735451A0D733A0012DFD1 /* ContactsViewController.m */,
+				2B42B4B61A0DA11300BA1194 /* ChatViewController.h */,
+				2B42B4B71A0DA11300BA1194 /* ChatViewController.m */,
+				2B42B4C31A10082D00BA1194 /* DetailsViewController.h */,
+				2B42B4C41A10082D00BA1194 /* DetailsViewController.m */,
+				2B42B4C91A10332100BA1194 /* RegisterViewController.h */,
+				2B42B4CA1A10332100BA1194 /* RegisterViewController.m */,
+				2B42B4BD1A0E2BCF00BA1194 /* ChatManager.h */,
+				2B42B4BE1A0E2BCF00BA1194 /* ChatManager.m */,
+				2B42B4CC1A111A9100BA1194 /* AddContactsViewController.h */,
+				2B42B4CD1A111A9100BA1194 /* AddContactsViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		2B42B4B51A0D7B4200BA1194 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2B7735491A0D75650012DFD1 /* HttpRequester.h */,
+				2B77354A1A0D75650012DFD1 /* HttpRequester.m */,
+				2B42B4B11A0D7ADD00BA1194 /* Notifier.h */,
+				2B42B4B21A0D7ADD00BA1194 /* Notifier.m */,
+				2B42B4C61A10267A00BA1194 /* UIImage+Helpers.h */,
+				2B42B4C71A10267A00BA1194 /* UIImage+Helpers.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		2B42B4BC1A0DA5BA00BA1194 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2B42B4B91A0DA5AF00BA1194 /* User.h */,
+				2B42B4BA1A0DA5AF00BA1194 /* User.m */,
+				2B42B4C01A0E4AB200BA1194 /* Message.h */,
+				2B42B4C11A0E4AB200BA1194 /* Message.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2B77350F1A0D5D750012DFD1 = {
+			isa = PBXGroup;
+			children = (
+				2B77351A1A0D5D750012DFD1 /* SimplyChat */,
+				2B7735341A0D5D750012DFD1 /* SimplyChatTests */,
+				2B7735191A0D5D750012DFD1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2B7735191A0D5D750012DFD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B7735181A0D5D750012DFD1 /* SimplyChat.app */,
+				2B7735311A0D5D750012DFD1 /* SimplyChatTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B77351A1A0D5D750012DFD1 /* SimplyChat */ = {
+			isa = PBXGroup;
+			children = (
+				2B7735251A0D5D750012DFD1 /* Main.storyboard */,
+				2B42B4B41A0D7B3900BA1194 /* Controllers */,
+				2B42B4BC1A0DA5BA00BA1194 /* Models */,
+				2B42B4B51A0D7B4200BA1194 /* Helpers */,
+				2B77351B1A0D5D750012DFD1 /* Supporting Files */,
+			);
+			path = SimplyChat;
+			sourceTree = "<group>";
+		};
+		2B77351B1A0D5D750012DFD1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2B7735281A0D5D750012DFD1 /* Images.xcassets */,
+				2B77352A1A0D5D750012DFD1 /* LaunchScreen.xib */,
+				2B77351F1A0D5D750012DFD1 /* AppDelegate.h */,
+				2B7735201A0D5D750012DFD1 /* AppDelegate.m */,
+				2B77351C1A0D5D750012DFD1 /* Info.plist */,
+				2B77351D1A0D5D750012DFD1 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2B7735341A0D5D750012DFD1 /* SimplyChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				2B7735371A0D5D750012DFD1 /* SimplyChatTests.m */,
+				2B7735351A0D5D750012DFD1 /* Supporting Files */,
+			);
+			path = SimplyChatTests;
+			sourceTree = "<group>";
+		};
+		2B7735351A0D5D750012DFD1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2B7735361A0D5D750012DFD1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2B7735171A0D5D750012DFD1 /* SimplyChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B77353B1A0D5D750012DFD1 /* Build configuration list for PBXNativeTarget "SimplyChat" */;
+			buildPhases = (
+				2B7735141A0D5D750012DFD1 /* Sources */,
+				2B7735151A0D5D750012DFD1 /* Frameworks */,
+				2B7735161A0D5D750012DFD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimplyChat;
+			productName = SimplyChat;
+			productReference = 2B7735181A0D5D750012DFD1 /* SimplyChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2B7735301A0D5D750012DFD1 /* SimplyChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B77353E1A0D5D750012DFD1 /* Build configuration list for PBXNativeTarget "SimplyChatTests" */;
+			buildPhases = (
+				2B77352D1A0D5D750012DFD1 /* Sources */,
+				2B77352E1A0D5D750012DFD1 /* Frameworks */,
+				2B77352F1A0D5D750012DFD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B7735331A0D5D750012DFD1 /* PBXTargetDependency */,
+			);
+			name = SimplyChatTests;
+			productName = SimplyChatTests;
+			productReference = 2B7735311A0D5D750012DFD1 /* SimplyChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B7735101A0D5D750012DFD1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Jivko Rusev";
+				TargetAttributes = {
+					2B7735171A0D5D750012DFD1 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					2B7735301A0D5D750012DFD1 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 2B7735171A0D5D750012DFD1;
+					};
+				};
+			};
+			buildConfigurationList = 2B7735131A0D5D750012DFD1 /* Build configuration list for PBXProject "SimplyChat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B77350F1A0D5D750012DFD1;
+			productRefGroup = 2B7735191A0D5D750012DFD1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B7735171A0D5D750012DFD1 /* SimplyChat */,
+				2B7735301A0D5D750012DFD1 /* SimplyChatTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2B7735161A0D5D750012DFD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B7735271A0D5D750012DFD1 /* Main.storyboard in Resources */,
+				2B77352C1A0D5D750012DFD1 /* LaunchScreen.xib in Resources */,
+				2B7735291A0D5D750012DFD1 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B77352F1A0D5D750012DFD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B7735141A0D5D750012DFD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B42B4BB1A0DA5AF00BA1194 /* User.m in Sources */,
+				2B77354C1A0D75650012DFD1 /* HttpRequester.m in Sources */,
+				2B42B4C51A10082D00BA1194 /* DetailsViewController.m in Sources */,
+				2B7735211A0D5D750012DFD1 /* AppDelegate.m in Sources */,
+				2B7735461A0D733A0012DFD1 /* ContactsViewController.m in Sources */,
+				2B42B4B31A0D7ADD00BA1194 /* Notifier.m in Sources */,
+				2B77351E1A0D5D750012DFD1 /* main.m in Sources */,
+				2B42B4C81A10267A00BA1194 /* UIImage+Helpers.m in Sources */,
+				2B42B4B81A0DA11300BA1194 /* ChatViewController.m in Sources */,
+				2B42B4CB1A10332100BA1194 /* RegisterViewController.m in Sources */,
+				2B42B4C21A0E4AB200BA1194 /* Message.m in Sources */,
+				2B42B4CE1A111A9100BA1194 /* AddContactsViewController.m in Sources */,
+				2B7735431A0D5DE10012DFD1 /* LoginViewController.m in Sources */,
+				2B42B4BF1A0E2BCF00BA1194 /* ChatManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B77352D1A0D5D750012DFD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B7735381A0D5D750012DFD1 /* SimplyChatTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2B7735331A0D5D750012DFD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B7735171A0D5D750012DFD1 /* SimplyChat */;
+			targetProxy = 2B7735321A0D5D750012DFD1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2B7735251A0D5D750012DFD1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B7735261A0D5D750012DFD1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2B77352A1A0D5D750012DFD1 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B77352B1A0D5D750012DFD1 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2B7735391A0D5D750012DFD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2B77353A1A0D5D750012DFD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B77353C1A0D5D750012DFD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SimplyChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2B77353D1A0D5D750012DFD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SimplyChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		2B77353F1A0D5D750012DFD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SimplyChatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimplyChat.app/SimplyChat";
+			};
+			name = Debug;
+		};
+		2B7735401A0D5D750012DFD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SimplyChatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimplyChat.app/SimplyChat";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B7735131A0D5D750012DFD1 /* Build configuration list for PBXProject "SimplyChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B7735391A0D5D750012DFD1 /* Debug */,
+				2B77353A1A0D5D750012DFD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B77353B1A0D5D750012DFD1 /* Build configuration list for PBXNativeTarget "SimplyChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B77353C1A0D5D750012DFD1 /* Debug */,
+				2B77353D1A0D5D750012DFD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B77353E1A0D5D750012DFD1 /* Build configuration list for PBXNativeTarget "SimplyChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B77353F1A0D5D750012DFD1 /* Debug */,
+				2B7735401A0D5D750012DFD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2B7735101A0D5D750012DFD1 /* Project object */;
+}

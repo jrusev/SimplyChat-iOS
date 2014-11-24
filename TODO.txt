@@ -1,0 +1,15 @@
+UI
+1. Add contacts (+search) + update UserModel
+2. Save to CoreData
+
+Optional
+1. UserDefaults for logged user
+2. UITableView separator line disappears
+3. Change textfield to many rows
+//4. Auto Layout
+
+Refactoring
+1. Save current user/token globally
+
+
+
